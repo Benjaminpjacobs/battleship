@@ -1,12 +1,8 @@
-require './lib/boards'
-
 class Board
-  include Boards
   attr_accessor :board, :fleet
 
-  def initialize(level = :beginner)
-    @level = level
-    @board = BOARDSIZE[level] 
+  def initialize
+    @board = [] 
     @fleet = {}
   end
 
@@ -14,6 +10,16 @@ class Board
     @board.each do |line|
       puts line.join
     end
+  end
+  
+  def setup
+    @board = [["==", "==", "==", "==", "=="], 
+              [". ", "1 ", "2 ", "3 ", "4 "], 
+              ["A ", "  ", "  ", "  ", "  "], 
+              ["B ", "  ", "  ", "  ", "  "], 
+              ["C ", "  ", "  ", "  ", "  "],
+              ["D ", "  ", "  ", "  ", "  "], 
+              ["==", "==", "==", "==", "=="]]
   end
 
   def hit(coordinate)
