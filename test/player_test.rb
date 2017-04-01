@@ -24,4 +24,8 @@ class PlayerTest < Minitest::Test
     expected = 0
     assert_equal expected, actual
   end
+  def test_it_can_enter_fleet
+    p = Player.new
+    p.enter_fleet(["A2","A3"])
+  end
 end

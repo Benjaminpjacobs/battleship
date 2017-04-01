@@ -16,8 +16,40 @@ class SessionTest < Minitest::Test
     s = Session.new
     assert_instance_of Player, s.player
   end
+
   def test_it_can_prompt_player_for_fleet
     s = Session.new
-    s.get_player_fleet
+    actual = s.get_player_fleet
+    expected = ["B1", "B3"]
+    assert_equal expected, actual
   end
+
+  def test_ship_rules
+    s = Session.new
+    actual =  s.compliant?(2, ["A1","A3"])
+    expected = "Coordinates must correspond to the first and last units of the ship. (IE: You can’t place a two unit ship at “A1 A3”)"
+    assert_equal expected, actual
+    actual = s.compliant?(2, ["A1","C1"])
+    expected = "Coordinates must correspond to the first and last units of the ship. (IE: You can’t place a two unit ship at “A1 A3”)"
+    assert_equal expected, actual
+    actual = s.compliant?(3, ["A4","A2"]) 
+    expected = "Ships cannot wrap around the board"
+    assert_equal expected, actual
+    actual =  s.compliant?(3, ["C2","A2"]) 
+    expected = "Ships cannot wrap around the board"
+    assert_equal expected, actual
+    actual = s.compliant?(2, ["A1","B2"])
+    expected = "Ships must be horizontal or vertical"
+    assert_equal expected, actual
+    actual = s.compliant?(2, ["A1", "A2"])
+    expected = :valid
+    assert_equal expected, actual
+  end
+  
+  # def test_placement_compliance
+  #   s = Session.new
+  #   actual = s.placement_compliance(2, ["A1", "B2"])
+  #   expected = ["A1", "A2"]
+  #   assert_equal expected, actual
+  # end
 end
