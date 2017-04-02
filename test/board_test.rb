@@ -1,5 +1,6 @@
 require './test/test_helper'
 require './lib/board.rb'
+require 'pry'
 
 class BoardTest < Minitest::Test
   def test_it_exists
@@ -32,6 +33,25 @@ class BoardTest < Minitest::Test
               ["==", "==", "==", "==", "=="]]
     assert_equal expected, actual
   end
+  def test_it_can_setup_intermediate_display
+    b = Board.new
+    b.setup(:intermediate)
+    actual = b.board.length
+    expected = 11
+    assert_equal expected, actual
+    b.display_board
+  end
+
+    def test_it_can_setup_intermediate_display
+    b = Board.new
+    b.setup(:advanced)
+    actual = b.board.length
+    expected = 15
+    assert_equal expected, actual
+    b.display_board
+  end
+
+
   def test_it_can_record_hit
     b = Board.new
     b.setup
@@ -53,6 +73,7 @@ class BoardTest < Minitest::Test
 
   def test_it_can_add_ships
     b = Board.new
+    b.setup
     b.add_ship(2, ["A1","A2"] )
     b.add_ship(3, ["B3","D3"] )
     actual = b.fleet
@@ -62,6 +83,7 @@ class BoardTest < Minitest::Test
 
   def test_it_can_add_three_ship_horizontal
     b = Board.new
+    b.setup
     b.add_ship(2, ["B2","B3"] )
     b.add_ship(3, ["A1","A3"] )
     actual = b.fleet
@@ -91,5 +113,15 @@ class BoardTest < Minitest::Test
     actual = b.board[2][4]
     assert_equal expected, actual
     b.display_board
+  end
+
+  def test_it_can_put_ships_on_the_board
+    b= Board.new
+    b.setup
+    b.add_ship(2, ["B2","B3"] )
+    b.add_ship(3, ["A1","A3"] )
+    actual = b.board[2][1]
+    expected = "∆ "
+    assert_equal expected, actual
   end
 end

@@ -1,4 +1,6 @@
+require "./lib/boards"
 class Board
+  include BoardMaker
   attr_accessor :board, :fleet
 
   def initialize
@@ -12,24 +14,18 @@ class Board
     end
   end
   
-  def setup
-    @board = [["==", "==", "==", "==", "=="], 
-              [". ", "1 ", "2 ", "3 ", "4 "], 
-              ["A ", "  ", "  ", "  ", "  "], 
-              ["B ", "  ", "  ", "  ", "  "], 
-              ["C ", "  ", "  ", "  ", "  "],
-              ["D ", "  ", "  ", "  ", "  "], 
-              ["==", "==", "==", "==", "=="]]
+  def setup(level=:beginner)
+    @board = make_board(level)
   end
 
   def hit(coordinate)
-    coordinates = parse_location(coordinate)
-    @board[coordinates[0]][coordinates[1]] = "H "
+    coordinate = parse_location(coordinate)
+    @board[coordinate[0]][coordinate[1]] = "H "
   end
 
   def miss(coordinate)
-    coordinates = parse_location(coordinate)
-    @board[coordinates[0]][coordinates[1]] = "M "
+    coordinate = parse_location(coordinate)
+    @board[coordinate[0]][coordinate[1]] = "M "
   end
 
   def add_ship(ship, coordinates)
@@ -38,6 +34,7 @@ class Board
     else
       @fleet[ship] = coordinates
     end
+    display_ship_on_board(@fleet[ship])
   end
   
   def evaluate_move(coordinates)
@@ -47,7 +44,16 @@ class Board
       miss(coordinates)
     end
   end
+
 private
+
+  def display_ship_on_board(coordinates)
+    coordinates.each do |coordinate|
+      location = parse_location(coordinate)
+      @board[location[0]][location[1]] = "∆ "
+    end
+    display_board
+  end
 
   def parse_location(location)
     location = location.split('')

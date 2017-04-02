@@ -9,6 +9,7 @@ class Session
     @computer = '' #Computer.new
     @fleet = {}
   end
+
   def get_player_fleet
     puts "I have laid out my ships on the grid.
           You now need to layout your two ships.
@@ -25,7 +26,6 @@ class Session
   end
 
   def placement_compliance(length, coordinates)
-    # binding.pry
     if length == 3 && check_fleet(length, coordinates)
       puts "Ships cannot overlap"
       puts "please choose new coordinates"
@@ -40,7 +40,6 @@ class Session
   end
 
   def check_fleet(length, coordinates)
-    # binding.pry
     @fleet.values.flatten.include?(coordinates[0]) || @fleet.values.flatten.include?(coordinates[1])
   end
 
