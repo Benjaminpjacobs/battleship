@@ -1,4 +1,4 @@
-require "./lib/boards"
+require "./lib/boardmaker_module"
 class Board
   include BoardMaker
   attr_accessor :board, :fleet
@@ -45,6 +45,14 @@ class Board
     end
   end
 
+  def interpolate_coordinates(coordinates)
+    if same_first_coordinate(coordinates)
+      interpolated = generate_interpolated_right(coordinates)
+    else
+      interpolated = generate_interpolated_left(coordinates)
+    end
+    coordinates << interpolated
+  end
 private
 
   def display_ship_on_board(coordinates)
@@ -68,14 +76,6 @@ private
     location
   end
 
-  def interpolate_coordinates(coordinates)
-    if same_first_coordinate(coordinates)
-      interpolated = generate_interpolated_right(coordinates)
-    else
-      interpolated = generate_interpolated_left(coordinates)
-    end
-    coordinates << interpolated
-  end
   
   def generate_interpolated_right(coordinates)
     coordinates[0].split('')[0] + coordinates[0].split('')[1].next
