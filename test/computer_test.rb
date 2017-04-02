@@ -43,7 +43,6 @@ class ComputerTest < Minitest::Test
     assert_equal expected, actual
   end
   
-
   def test_it_can_check_second_compliance
     c = Computer.new
     ship = c.placement_compliance(2, c.generate_potential_ship)
@@ -51,5 +50,33 @@ class ComputerTest < Minitest::Test
     ship = c.placement_compliance(3, c.generate_potential_ship)
     c.add_to_fleet(3, ship)
     assert c.compliant?(3, ship)
+  end
+
+  def test_it_can_make_fleet
+    c = Computer.new
+    c.make_fleet
+    actual = c.board.fleet.keys
+    expected = [2,3]
+    assert_equal expected, actual
+  end
+
+  def test_it_makes_and_stores_moves
+    c = Computer.new
+    c.guess
+    c.guess
+    c.guess
+    assert_equal 3, c.moves.length
+  end
+
+  def test_it_cannot_repeat_move
+    c = Computer.new
+    c.moves = ["A1", "A2", "A3", "A4", 
+               "B1", "B2", "B3", "B4",
+               "C1", "C2", "C3", "C4", 
+               "D1", "D2", "D3"]
+    c.guess
+    actual = c.moves.pop
+    expected = "D4"
+    assert_equal expected, actual
   end
 end

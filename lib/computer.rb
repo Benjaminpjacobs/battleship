@@ -1,12 +1,32 @@
 require 'pry'
 require './lib/board'
 require './lib/setup_module'
+
 class Computer
+  include Setup
+
   attr_accessor :board, :moves
   def initialize
     @board = Board.new
     @board.setup
     @moves = []
+  end
+
+  def guess
+    move = generate_coordinate 
+    if @moves.include?(move)
+      guess
+    else
+      @moves << move
+    end
+   move
+  end
+
+  def make_fleet
+    ship_1 = placement_compliance(2, generate_potential_ship)
+    add_to_fleet(2, ship_1)
+    ship_2 = placement_compliance(3, generate_potential_ship)
+    add_to_fleet(3, ship_2)
   end
 
   def generate_coordinate
@@ -59,8 +79,9 @@ class Computer
   end
 
   def check_fleet(length, coordinates)
-    coordinates = @board.interpolate_coordinates(coordinates)
-    @board.fleet.values.flatten.include?(coordinates[0]) || @board.fleet.values.flatten.include?(coordinates[1]) ||
-    @board.fleet.values.flatten.include?(coordinates[2])
+    check = @board.interpolate_coordinates(coordinates)
+    coordinates.pop
+    @board.fleet.values.flatten.include?(check[0]) || @board.fleet.values.flatten.include?(check[1]) ||
+    @board.fleet.values.flatten.include?(check[2])
   end
 end

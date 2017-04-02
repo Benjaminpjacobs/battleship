@@ -53,6 +53,7 @@ class Board
     end
     coordinates << interpolated
   end
+  
 private
 
   def display_ship_on_board(coordinates)
