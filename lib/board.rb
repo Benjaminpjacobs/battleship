@@ -28,14 +28,15 @@ class Board
     @board[coordinate[0]][coordinate[1]] = "M "
   end
 
-  def add_ship(ship, coordinates)
+  def add_ship(ship, coordinates, user=nil)
     if ship > 2
       @fleet[ship] = interpolate_coordinates(coordinates)
     else
       @fleet[ship] = coordinates
     end
-    display_ship_on_board(@fleet[ship])
+    display_ship_on_board(@fleet[ship]) if user.nil?
   end
+  
   
   def evaluate_move(coordinates)
     if @fleet.values.flatten.include?(coordinates)
@@ -54,15 +55,15 @@ class Board
     coordinates << interpolated
   end
   
-private
-
   def display_ship_on_board(coordinates)
     coordinates.each do |coordinate|
       location = parse_location(coordinate)
       @board[location[0]][location[1]] = "∆ "
     end
-    display_board
   end
+
+private
+
 
   def parse_location(location)
     location = location.split('')

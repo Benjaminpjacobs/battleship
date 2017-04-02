@@ -77,7 +77,7 @@ class BoardTest < Minitest::Test
     b.add_ship(2, ["A1","A2"] )
     b.add_ship(3, ["B3","D3"] )
     actual = b.fleet
-    expected = { 2 => ["A1","A2"], 3 => ["B3","C3","D3"] }
+    expected = { 2 => ["A1","A2"], 3 => ["B3","D3", "C3"] }
     assert_equal expected, actual
   end
 
@@ -87,7 +87,7 @@ class BoardTest < Minitest::Test
     b.add_ship(2, ["B2","B3"] )
     b.add_ship(3, ["A1","A3"] )
     actual = b.fleet
-    expected = { 2 => ["B2","B3"], 3 => ["A1","A2","A3"] }
+    expected = { 2 => ["B2","B3"], 3 => ["A1","A3","A2"] }
     assert_equal expected, actual
   end
 

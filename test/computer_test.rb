@@ -31,12 +31,12 @@ class ComputerTest < Minitest::Test
   def test_it_can_check_first_compliance
     c = Computer.new
     ship = c.generate_potential_ship
-    assert c.placement_compliance(2, ship)
+    assert c.validate_ship(2, ship)
   end
 
   def test_it_can_add_ship_to_fleet
     c = Computer.new
-    ship = c.placement_compliance(2, c.generate_potential_ship)
+    ship = c.validate_ship(2, c.generate_potential_ship)
     c.add_to_fleet(2, ship)
     actual = c.board.fleet
     expected = {2 => ship}
@@ -44,10 +44,11 @@ class ComputerTest < Minitest::Test
   end
   
   def test_it_can_check_second_compliance
+    # binding.pry
     c = Computer.new
-    ship = c.placement_compliance(2, c.generate_potential_ship)
+    ship = c.validate_ship(2, c.generate_potential_ship)
     c.add_to_fleet(2, ship)
-    ship = c.placement_compliance(3, c.generate_potential_ship)
+    ship = c.validate_ship(3, c.generate_potential_ship)
     c.add_to_fleet(3, ship)
     assert c.compliant?(3, ship)
   end

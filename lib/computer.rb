@@ -6,9 +6,9 @@ class Computer
   include Setup
 
   attr_accessor :board, :moves
-  def initialize
+  def initialize(level=:beginner)
     @board = Board.new
-    @board.setup
+    @board.setup(level)
     @moves = []
   end
 
@@ -23,10 +23,11 @@ class Computer
   end
 
   def make_fleet
-    ship_1 = placement_compliance(2, generate_potential_ship)
+    ship_1 = validate_ship(2, generate_potential_ship)
     add_to_fleet(2, ship_1)
-    ship_2 = placement_compliance(3, generate_potential_ship)
+    ship_2 = validate_ship(3, generate_potential_ship)
     add_to_fleet(3, ship_2)
+    @board.display_board
   end
 
   def generate_coordinate
@@ -39,49 +40,22 @@ class Computer
   end
 
   def add_to_fleet(length, coordinates)
-    @board.add_ship(length, coordinates)
+    @board.add_ship(length, coordinates, :computer)
   end
 
-  def placement_compliance(length, coordinates)
-    if length == 3 && check_fleet(length, coordinates)
-      placement_compliance(length, generate_potential_ship)
-    elsif compliant?(length, coordinates)
+  def validate_ship(length, coordinates)
+    if length == 3 && check_fleet(length, coordinates, @board)
+      validate_ship(length, generate_potential_ship)
+    elsif computer_compliant?(length, coordinates)
       coordinates
     else
-      placement_compliance(length, generate_potential_ship)
+      validate_ship(length, generate_potential_ship)
     end
   end
 
-  def compliant?(length, coordinates)
+  def computer_compliant?(length, coordinates)
+    coordinates.pop if coordinates.length == 3
     coordinates = coordinates.join.split('')
     !(ship_too_long(length, coordinates) || ship_wraps_board(coordinates) || ship_diagonal(coordinates)|| same_coordinates(coordinates) || ship_too_short(length, coordinates)) 
-  end
-
-  def ship_too_long(length, coordinates)
-    (coordinates[3].ord - coordinates[1].ord) >= length ||(coordinates[2].ord - coordinates[0].ord) >= length
-  end
-
-  def ship_too_short(length, coordinates)
-    !((coordinates[3].ord - coordinates[1].ord) == (length-1) ||(coordinates[2].ord - coordinates[0].ord) == (length-1))
-  end
-
-  def ship_wraps_board(coordinates)
-    coordinates[1].ord > coordinates[3].ord || coordinates[0].ord > coordinates[2].ord  
-  end
-
-  def ship_diagonal(coordinates)
-    coordinates[1].to_i != coordinates[3].to_i &&
-    coordinates[0] != coordinates[2]
-  end
-
-  def same_coordinates(coordinates)
-    (coordinates[0] == coordinates[2]) && (coordinates[1] == coordinates[3])
-  end
-
-  def check_fleet(length, coordinates)
-    check = @board.interpolate_coordinates(coordinates)
-    coordinates.pop
-    @board.fleet.values.flatten.include?(check[0]) || @board.fleet.values.flatten.include?(check[1]) ||
-    @board.fleet.values.flatten.include?(check[2])
   end
 end
