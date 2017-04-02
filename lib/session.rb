@@ -29,7 +29,7 @@ class Session
   end
 
 
-  
+
 private
   def two_unit_submission
     puts "Enter the squares for the two-unit ship:"
@@ -46,14 +46,5 @@ private
     coordinates = placement_compliance(3, submission, @player.board)
     @player.board.add_ship(3, coordinates)
   end
-  
-  def verify_submission(submission)
-    if submission.length != 2
-      puts "Please enter two coordinates separated by a space.(i.e A1 A2 for 2 unit ship or B1 B3 for three unit ship)"
-      verify_submission(gets.chomp.split(' '))
-    else
-      submission
-    end
-  end
- 
+
 end

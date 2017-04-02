@@ -14,27 +14,27 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2017-04-02T16:59:23-06:00">2017-04-02T16:59:23-06:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2017-04-02T17:12:06-06:00">2017-04-02T17:12:06-06:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="yellow">87.24%</span></span>
+    (<span class="covered_percent"><span class="yellow">89.27%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         25.7
+         23.97
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>6</b> files in total.
-    <b>196</b> relevant lines. 
-    <span class="green"><b>171</b> lines covered</span> and
-    <span class="red"><b>25</b> lines missed </span>
+    <b>205</b> relevant lines. 
+    <span class="green"><b>183</b> lines covered</span> and
+    <span class="red"><b>22</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -53,11 +53,11 @@
       <tr>
         <td class="strong"><a href="#2239e185ced044cb0fdb57759571acfff7572f94" class="src_link" title="lib/board.rb">lib/board.rb</a></td>
         <td class="yellow strong">86.27 %</td>
-        <td>97</td>
+        <td>98</td>
         <td>51</td>
         <td>44</td>
         <td>7</td>
-        <td>21.9</td>
+        <td>20.8</td>
       </tr>
       
       <tr>
@@ -77,13 +77,13 @@
         <td>39</td>
         <td>34</td>
         <td>5</td>
-        <td>56.7</td>
+        <td>54.8</td>
       </tr>
       
       <tr>
         <td class="strong"><a href="#2921b5c762959386ce47f836ddd0c1e6e3234141" class="src_link" title="lib/player.rb">lib/player.rb</a></td>
         <td class="red strong">53.33 %</td>
-        <td>21</td>
+        <td>22</td>
         <td>15</td>
         <td>8</td>
         <td>7</td>
@@ -92,22 +92,22 @@
       
       <tr>
         <td class="strong"><a href="#c895619ecac48dc670d58938a0497de4de8decb8" class="src_link" title="lib/session.rb">lib/session.rb</a></td>
-        <td class="green strong">93.94 %</td>
-        <td>59</td>
-        <td>33</td>
-        <td>31</td>
-        <td>2</td>
-        <td>1.7</td>
+        <td class="green strong">100.0 %</td>
+        <td>50</td>
+        <td>28</td>
+        <td>28</td>
+        <td>0</td>
+        <td>1.9</td>
       </tr>
       
       <tr>
         <td class="strong"><a href="#9fc9c812557fa6f57ed618b1231ba3b5229e0810" class="src_link" title="lib/setup_module.rb">lib/setup_module.rb</a></td>
-        <td class="yellow strong">88.89 %</td>
-        <td>59</td>
-        <td>36</td>
-        <td>32</td>
-        <td>4</td>
-        <td>25.6</td>
+        <td class="green strong">94.0 %</td>
+        <td>82</td>
+        <td>50</td>
+        <td>47</td>
+        <td>3</td>
+        <td>18.6</td>
       </tr>
       
     </tbody>
@@ -146,232 +146,232 @@
           <code class="ruby">require &quot;./lib/boardmaker_module&quot;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="2">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="2">
           
-          <code class="ruby">class Board</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="3">
           <span class="hits">1</span>
           
-          <code class="ruby">  include BoardMaker</code>
+          <code class="ruby">class Board</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="4">
           <span class="hits">1</span>
           
+          <code class="ruby">  include BoardMaker</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="5">
+          <span class="hits">1</span>
+          
           <code class="ruby">  attr_accessor :board, :fleet</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="5">
+        <li class="never" data-hits="" data-linenumber="6">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="6">
+        <li class="covered" data-hits="1" data-linenumber="7">
           <span class="hits">1</span>
           
           <code class="ruby">  def initialize</code>
         </li>
       
-        <li class="covered" data-hits="14" data-linenumber="7">
+        <li class="covered" data-hits="14" data-linenumber="8">
           <span class="hits">14</span>
           
           <code class="ruby">    @board = [] </code>
         </li>
       
-        <li class="covered" data-hits="14" data-linenumber="8">
+        <li class="covered" data-hits="14" data-linenumber="9">
           <span class="hits">14</span>
           
           <code class="ruby">    @fleet = {}</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="9">
+        <li class="never" data-hits="" data-linenumber="10">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="10">
+        <li class="never" data-hits="" data-linenumber="11">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="11">
+        <li class="covered" data-hits="1" data-linenumber="12">
           <span class="hits">1</span>
           
           <code class="ruby">  def display_board</code>
         </li>
       
-        <li class="covered" data-hits="9" data-linenumber="12">
+        <li class="covered" data-hits="9" data-linenumber="13">
           <span class="hits">9</span>
           
           <code class="ruby">    @board.each do |line|</code>
         </li>
       
-        <li class="covered" data-hits="63" data-linenumber="13">
+        <li class="covered" data-hits="63" data-linenumber="14">
           <span class="hits">63</span>
           
           <code class="ruby">      puts line.join</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="14">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
         <li class="never" data-hits="" data-linenumber="15">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="16">
           
           
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="17">
+          
+          
           <code class="ruby">  </code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="17">
+        <li class="covered" data-hits="1" data-linenumber="18">
           <span class="hits">1</span>
           
           <code class="ruby">  def setup(level=:beginner)</code>
         </li>
       
-        <li class="covered" data-hits="14" data-linenumber="18">
+        <li class="covered" data-hits="14" data-linenumber="19">
           <span class="hits">14</span>
           
           <code class="ruby">    @board = make_board(level)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="19">
+        <li class="never" data-hits="" data-linenumber="20">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="20">
+        <li class="never" data-hits="" data-linenumber="21">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="21">
+        <li class="covered" data-hits="1" data-linenumber="22">
           <span class="hits">1</span>
           
           <code class="ruby">  def hit(coordinate)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="22">
+        <li class="missed" data-hits="0" data-linenumber="23">
           
           
           <code class="ruby">    coordinate = parse_location(coordinate)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="23">
+        <li class="missed" data-hits="0" data-linenumber="24">
           
           
           <code class="ruby">    @board[coordinate[0]][coordinate[1]] = &quot;H &quot;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="24">
+        <li class="never" data-hits="" data-linenumber="25">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="25">
+        <li class="never" data-hits="" data-linenumber="26">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="26">
+        <li class="covered" data-hits="1" data-linenumber="27">
           <span class="hits">1</span>
           
           <code class="ruby">  def miss(coordinate)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="27">
+        <li class="missed" data-hits="0" data-linenumber="28">
           
           
           <code class="ruby">    coordinate = parse_location(coordinate)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="28">
+        <li class="missed" data-hits="0" data-linenumber="29">
           
           
           <code class="ruby">    @board[coordinate[0]][coordinate[1]] = &quot;M &quot;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="29">
+        <li class="never" data-hits="" data-linenumber="30">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="30">
+        <li class="never" data-hits="" data-linenumber="31">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="31">
+        <li class="covered" data-hits="1" data-linenumber="32">
           <span class="hits">1</span>
           
           <code class="ruby">  def add_ship(ship, coordinates, user=nil)</code>
         </li>
       
-        <li class="covered" data-hits="16" data-linenumber="32">
+        <li class="covered" data-hits="16" data-linenumber="33">
           <span class="hits">16</span>
           
           <code class="ruby">    if ship &gt; 2</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="33">
+        <li class="covered" data-hits="8" data-linenumber="34">
           <span class="hits">8</span>
           
           <code class="ruby">      @fleet[ship] = interpolate_coordinates(coordinates)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="34">
+        <li class="never" data-hits="" data-linenumber="35">
           
           
           <code class="ruby">    else</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="35">
+        <li class="covered" data-hits="8" data-linenumber="36">
           <span class="hits">8</span>
           
           <code class="ruby">      @fleet[ship] = coordinates</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="36">
+        <li class="never" data-hits="" data-linenumber="37">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="16" data-linenumber="37">
+        <li class="covered" data-hits="16" data-linenumber="38">
           <span class="hits">16</span>
           
           <code class="ruby">    display_ship_on_board(@fleet[ship]) if user.nil?</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="38">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
         <li class="never" data-hits="" data-linenumber="39">
           
           
-          <code class="ruby">  </code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="40">
@@ -380,160 +380,160 @@
           <code class="ruby">  </code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="41">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def evaluate_move(coordinates)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="42">
-          
-          
-          <code class="ruby">    if @fleet.values.flatten.include?(coordinates)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="43">
-          
-          
-          <code class="ruby">      hit(coordinates)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="44">
-          
-          
-          <code class="ruby">    else</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="45">
-          
-          
-          <code class="ruby">      miss(coordinates)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="46">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="47">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="48">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="49">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def interpolate_coordinates(coordinates)</code>
-        </li>
-      
-        <li class="covered" data-hits="179" data-linenumber="50">
-          <span class="hits">179</span>
-          
-          <code class="ruby">    if same_first_coordinate(coordinates)</code>
-        </li>
-      
-        <li class="covered" data-hits="52" data-linenumber="51">
-          <span class="hits">52</span>
-          
-          <code class="ruby">      interpolated = generate_interpolated_right(coordinates)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="52">
-          
-          
-          <code class="ruby">    else</code>
-        </li>
-      
-        <li class="covered" data-hits="127" data-linenumber="53">
-          <span class="hits">127</span>
-          
-          <code class="ruby">      interpolated = generate_interpolated_left(coordinates)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="54">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="covered" data-hits="179" data-linenumber="55">
-          <span class="hits">179</span>
-          
-          <code class="ruby">    coordinates &lt;&lt; interpolated</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="56">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="57">
+        <li class="never" data-hits="" data-linenumber="41">
           
           
           <code class="ruby">  </code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="58">
+        <li class="covered" data-hits="1" data-linenumber="42">
           <span class="hits">1</span>
           
-          <code class="ruby">  def display_ship_on_board(coordinates)</code>
+          <code class="ruby">  def evaluate_move(coordinates)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="59">
-          <span class="hits">2</span>
+        <li class="missed" data-hits="0" data-linenumber="43">
           
-          <code class="ruby">    coordinates.each do |coordinate|</code>
-        </li>
-      
-        <li class="covered" data-hits="5" data-linenumber="60">
-          <span class="hits">5</span>
           
-          <code class="ruby">      location = parse_location(coordinate)</code>
+          <code class="ruby">    if @fleet.values.flatten.include?(coordinates)</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="61">
-          <span class="hits">5</span>
+        <li class="missed" data-hits="0" data-linenumber="44">
           
-          <code class="ruby">      @board[location[0]][location[1]] = &quot;∆ &quot;</code>
+          
+          <code class="ruby">      hit(coordinates)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="62">
+        <li class="never" data-hits="" data-linenumber="45">
+          
+          
+          <code class="ruby">    else</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="46">
+          
+          
+          <code class="ruby">      miss(coordinates)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="47">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="63">
+        <li class="never" data-hits="" data-linenumber="48">
           
           
           <code class="ruby">  end</code>
         </li>
       
+        <li class="never" data-hits="" data-linenumber="49">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="50">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def interpolate_coordinates(coordinates)</code>
+        </li>
+      
+        <li class="covered" data-hits="168" data-linenumber="51">
+          <span class="hits">168</span>
+          
+          <code class="ruby">    if same_first_coordinate(coordinates)</code>
+        </li>
+      
+        <li class="covered" data-hits="48" data-linenumber="52">
+          <span class="hits">48</span>
+          
+          <code class="ruby">      interpolated = generate_interpolated_right(coordinates)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="53">
+          
+          
+          <code class="ruby">    else</code>
+        </li>
+      
+        <li class="covered" data-hits="120" data-linenumber="54">
+          <span class="hits">120</span>
+          
+          <code class="ruby">      interpolated = generate_interpolated_left(coordinates)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="55">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="covered" data-hits="168" data-linenumber="56">
+          <span class="hits">168</span>
+          
+          <code class="ruby">    coordinates &lt;&lt; interpolated</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="57">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="58">
+          
+          
+          <code class="ruby">  </code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="59">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def display_ship_on_board(coordinates)</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="60">
+          <span class="hits">2</span>
+          
+          <code class="ruby">    coordinates.each do |coordinate|</code>
+        </li>
+      
+        <li class="covered" data-hits="5" data-linenumber="61">
+          <span class="hits">5</span>
+          
+          <code class="ruby">      location = parse_location(coordinate)</code>
+        </li>
+      
+        <li class="covered" data-hits="5" data-linenumber="62">
+          <span class="hits">5</span>
+          
+          <code class="ruby">      @board[location[0]][location[1]] = &quot;∆ &quot;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="63">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
         <li class="never" data-hits="" data-linenumber="64">
           
           
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="65">
+          
+          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="65">
+        <li class="covered" data-hits="1" data-linenumber="66">
           <span class="hits">1</span>
           
           <code class="ruby">private</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="66">
-          
-          
-          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="67">
@@ -542,166 +542,166 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="68">
+        <li class="never" data-hits="" data-linenumber="68">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="69">
           <span class="hits">1</span>
           
           <code class="ruby">  def parse_location(location)</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="69">
+        <li class="covered" data-hits="5" data-linenumber="70">
           <span class="hits">5</span>
           
           <code class="ruby">    location = location.split(&#39;&#39;)</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="70">
+        <li class="covered" data-hits="5" data-linenumber="71">
           <span class="hits">5</span>
           
           <code class="ruby">    turn_string_into_digits(location)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="71">
+        <li class="never" data-hits="" data-linenumber="72">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="72">
+        <li class="never" data-hits="" data-linenumber="73">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="73">
+        <li class="covered" data-hits="1" data-linenumber="74">
           <span class="hits">1</span>
           
           <code class="ruby">  def turn_string_into_digits(location)</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="74">
+        <li class="covered" data-hits="5" data-linenumber="75">
           <span class="hits">5</span>
           
           <code class="ruby">    y_axis = {&#39;A&#39; =&gt; 2,&#39;B&#39; =&gt; 3,</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="75">
+        <li class="never" data-hits="" data-linenumber="76">
           
           
           <code class="ruby">              &#39;C&#39; =&gt; 4,&#39;D&#39; =&gt; 5}</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="76">
+        <li class="covered" data-hits="5" data-linenumber="77">
           <span class="hits">5</span>
           
           <code class="ruby">    location[1] = location[1].to_i</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="77">
+        <li class="covered" data-hits="5" data-linenumber="78">
           <span class="hits">5</span>
           
           <code class="ruby">    location[0] = y_axis[location[0]]</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="78">
+        <li class="covered" data-hits="5" data-linenumber="79">
           <span class="hits">5</span>
           
           <code class="ruby">    location</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="79">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
         <li class="never" data-hits="" data-linenumber="80">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="81">
           
           
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="82">
+          
+          
           <code class="ruby">  </code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="82">
+        <li class="covered" data-hits="1" data-linenumber="83">
           <span class="hits">1</span>
           
           <code class="ruby">  def generate_interpolated_right(coordinates)</code>
         </li>
       
-        <li class="covered" data-hits="52" data-linenumber="83">
-          <span class="hits">52</span>
+        <li class="covered" data-hits="48" data-linenumber="84">
+          <span class="hits">48</span>
           
           <code class="ruby">    coordinates[0].split(&#39;&#39;)[0] + coordinates[0].split(&#39;&#39;)[1].next</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="84">
-          
-          
-          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="85">
           
           
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="86">
+          
+          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="86">
+        <li class="covered" data-hits="1" data-linenumber="87">
           <span class="hits">1</span>
           
           <code class="ruby">  def generate_interpolated_left(coordinates)</code>
         </li>
       
-        <li class="covered" data-hits="127" data-linenumber="87">
-          <span class="hits">127</span>
+        <li class="covered" data-hits="120" data-linenumber="88">
+          <span class="hits">120</span>
           
           <code class="ruby">    coordinates[0].split(&#39;&#39;)[0].next + coordinates[1].split(&#39;&#39;)[1]</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="88">
-          
-          
-          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="89">
           
           
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="90">
+          
+          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="90">
+        <li class="covered" data-hits="1" data-linenumber="91">
           <span class="hits">1</span>
           
           <code class="ruby">  def same_first_coordinate(coordinates)</code>
         </li>
       
-        <li class="covered" data-hits="179" data-linenumber="91">
-          <span class="hits">179</span>
+        <li class="covered" data-hits="168" data-linenumber="92">
+          <span class="hits">168</span>
           
           <code class="ruby">    coordinates[0].split(&#39;&#39;)[0] == coordinates[1].split(&#39;&#39;)[0]</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="92">
-          
-          
-          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="93">
           
           
-          <code class="ruby">end</code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="94">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="95">
@@ -717,6 +717,12 @@
         </li>
       
         <li class="never" data-hits="" data-linenumber="97">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="98">
           
           
           <code class="ruby">############</code>
@@ -1232,8 +1238,8 @@
           <code class="ruby">  def generate_coordinate</code>
         </li>
       
-        <li class="covered" data-hits="464" data-linenumber="34">
-          <span class="hits">464</span>
+        <li class="covered" data-hits="448" data-linenumber="34">
+          <span class="hits">448</span>
           
           <code class="ruby">    (&quot;A&quot;..&quot;D&quot;).to_a.shuffle.pop + rand(1..4).to_s</code>
         </li>
@@ -1256,14 +1262,14 @@
           <code class="ruby">  def generate_potential_ship</code>
         </li>
       
-        <li class="covered" data-hits="232" data-linenumber="38">
-          <span class="hits">232</span>
+        <li class="covered" data-hits="224" data-linenumber="38">
+          <span class="hits">224</span>
           
           <code class="ruby">      coordinates = []</code>
         </li>
       
-        <li class="covered" data-hits="232" data-linenumber="39">
-          <span class="hits">232</span>
+        <li class="covered" data-hits="224" data-linenumber="39">
+          <span class="hits">224</span>
           
           <code class="ruby">      coordinates[0], coordinates[1] = generate_coordinate, generate_coordinate</code>
         </li>
@@ -1310,20 +1316,20 @@
           <code class="ruby">  def validate_ship(length, coordinates)</code>
         </li>
       
-        <li class="covered" data-hits="232" data-linenumber="47">
-          <span class="hits">232</span>
+        <li class="covered" data-hits="224" data-linenumber="47">
+          <span class="hits">224</span>
           
           <code class="ruby">    if length == 3 &amp;&amp; check_fleet(length, coordinates, @board)</code>
         </li>
       
-        <li class="covered" data-hits="48" data-linenumber="48">
-          <span class="hits">48</span>
+        <li class="covered" data-hits="47" data-linenumber="48">
+          <span class="hits">47</span>
           
           <code class="ruby">      validate_ship(length, generate_potential_ship)</code>
         </li>
       
-        <li class="covered" data-hits="184" data-linenumber="49">
-          <span class="hits">184</span>
+        <li class="covered" data-hits="177" data-linenumber="49">
+          <span class="hits">177</span>
           
           <code class="ruby">    elsif computer_compliant?(length, coordinates)</code>
         </li>
@@ -1340,8 +1346,8 @@
           <code class="ruby">    else</code>
         </li>
       
-        <li class="covered" data-hits="170" data-linenumber="52">
-          <span class="hits">170</span>
+        <li class="covered" data-hits="163" data-linenumber="52">
+          <span class="hits">163</span>
           
           <code class="ruby">      validate_ship(length, generate_potential_ship)</code>
         </li>
@@ -1370,20 +1376,20 @@
           <code class="ruby">  def computer_compliant?(length, coordinates)</code>
         </li>
       
-        <li class="covered" data-hits="184" data-linenumber="57">
-          <span class="hits">184</span>
+        <li class="covered" data-hits="177" data-linenumber="57">
+          <span class="hits">177</span>
           
           <code class="ruby">    coordinates.pop if coordinates.length == 3</code>
         </li>
       
-        <li class="covered" data-hits="184" data-linenumber="58">
-          <span class="hits">184</span>
+        <li class="covered" data-hits="177" data-linenumber="58">
+          <span class="hits">177</span>
           
           <code class="ruby">    coordinates = coordinates.join.split(&#39;&#39;)</code>
         </li>
       
-        <li class="covered" data-hits="184" data-linenumber="59">
-          <span class="hits">184</span>
+        <li class="covered" data-hits="177" data-linenumber="59">
+          <span class="hits">177</span>
           
           <code class="ruby">    !(ship_too_long(length, coordinates) || ship_wraps_board(coordinates) || ship_diagonal(coordinates)|| same_coordinates(coordinates) || ship_too_short(length, coordinates)) </code>
         </li>
@@ -1472,73 +1478,79 @@
           <code class="ruby">  end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="10">
+        <li class="never" data-hits="" data-linenumber="10">
+          
+          
+          <code class="ruby">  </code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="11">
           <span class="hits">1</span>
           
           <code class="ruby">  def guess</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="11">
+        <li class="missed" data-hits="0" data-linenumber="12">
           
           
           <code class="ruby">    puts &quot;Where would you like to shoot?&quot;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="12">
+        <li class="missed" data-hits="0" data-linenumber="13">
           
           
           <code class="ruby">    coordinate = gets.chomp</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="13">
+        <li class="missed" data-hits="0" data-linenumber="14">
           
           
           <code class="ruby">    if @moves.include?(coordinate)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="14">
+        <li class="missed" data-hits="0" data-linenumber="15">
           
           
           <code class="ruby">      puts &quot;You&#39;ve already shot there&quot;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="15">
+        <li class="missed" data-hits="0" data-linenumber="16">
           
           
           <code class="ruby">      guess</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="16">
+        <li class="never" data-hits="" data-linenumber="17">
           
           
           <code class="ruby">    else</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="17">
+        <li class="missed" data-hits="0" data-linenumber="18">
           
           
           <code class="ruby">      @moves &lt;&lt; coordinate</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="18">
+        <li class="never" data-hits="" data-linenumber="19">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="19">
+        <li class="missed" data-hits="0" data-linenumber="20">
           
           
           <code class="ruby">    coordinate</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="20">
+        <li class="never" data-hits="" data-linenumber="21">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="21">
+        <li class="never" data-hits="" data-linenumber="22">
           
           
           <code class="ruby">end</code>
@@ -1551,11 +1563,11 @@
         <div class="source_table" id="c895619ecac48dc670d58938a0497de4de8decb8">
   <div class="header">
     <h3>lib/session.rb</h3>
-    <h4><span class="green">93.94 %</span> covered</h4>
+    <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>33</b> relevant lines. 
-      <span class="green"><b>31</b> lines covered</span> and
-      <span class="red"><b>2</b> lines missed.</span>
+      <b>28</b> relevant lines. 
+      <span class="green"><b>28</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
   
@@ -1751,7 +1763,7 @@
         <li class="never" data-hits="" data-linenumber="32">
           
           
-          <code class="ruby">  </code>
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="33">
@@ -1853,64 +1865,10 @@
         <li class="never" data-hits="" data-linenumber="49">
           
           
-          <code class="ruby">  </code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="50">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def verify_submission(submission)</code>
-        </li>
-      
-        <li class="covered" data-hits="2" data-linenumber="51">
-          <span class="hits">2</span>
-          
-          <code class="ruby">    if submission.length != 2</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="52">
-          
-          
-          <code class="ruby">      puts &quot;Please enter two coordinates separated by a space.(i.e A1 A2 for 2 unit ship or B1 B3 for three unit ship)&quot;</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="53">
-          
-          
-          <code class="ruby">      verify_submission(gets.chomp.split(&#39; &#39;))</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="54">
-          
-          
-          <code class="ruby">    else</code>
-        </li>
-      
-        <li class="covered" data-hits="2" data-linenumber="55">
-          <span class="hits">2</span>
-          
-          <code class="ruby">      submission</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="56">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="57">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="58">
-          
-          
-          <code class="ruby"> </code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="59">
+        <li class="never" data-hits="" data-linenumber="50">
           
           
           <code class="ruby">end</code>
@@ -1923,11 +1881,11 @@
         <div class="source_table" id="9fc9c812557fa6f57ed618b1231ba3b5229e0810">
   <div class="header">
     <h3>lib/setup_module.rb</h3>
-    <h4><span class="yellow">88.89 %</span> covered</h4>
+    <h4><span class="green">94.0 %</span> covered</h4>
     <div>
-      <b>36</b> relevant lines. 
-      <span class="green"><b>32</b> lines covered</span> and
-      <span class="red"><b>4</b> lines missed.</span>
+      <b>50</b> relevant lines. 
+      <span class="green"><b>47</b> lines covered</span> and
+      <span class="red"><b>3</b> lines missed.</span>
     </div>
   </div>
   
@@ -1958,331 +1916,469 @@
           <code class="ruby">    if length == 3 &amp;&amp; check_fleet(length, coordinates, board)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="5">
-          
+        <li class="covered" data-hits="1" data-linenumber="5">
+          <span class="hits">1</span>
           
           <code class="ruby">      puts &quot;Ships cannot overlap&quot;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="6">
-          
+        <li class="covered" data-hits="1" data-linenumber="6">
+          <span class="hits">1</span>
           
           <code class="ruby">      puts &quot;please choose new coordinates&quot;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="7">
+        <li class="covered" data-hits="1" data-linenumber="7">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">      placement_compliance(length, gets.chomp.split(&#39; &#39;),board)</code>
+          <code class="ruby">      submission = verify_submission(gets.chomp.split(&#39; &#39;))</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="8">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="1" data-linenumber="8">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      placement_compliance(length, submission, board)</code>
+        </li>
+      
+        <li class="covered" data-hits="4" data-linenumber="9">
+          <span class="hits">4</span>
           
           <code class="ruby">    elsif compliant?(length, coordinates) == :valid</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="9">
+        <li class="covered" data-hits="3" data-linenumber="10">
           <span class="hits">3</span>
           
           <code class="ruby">      coordinates</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="10">
+        <li class="never" data-hits="" data-linenumber="11">
           
           
           <code class="ruby">    else</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="11">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="12">
+          <span class="hits">1</span>
           
           <code class="ruby">      puts compliant?(length, coordinates)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="12">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="13">
+          <span class="hits">1</span>
           
           <code class="ruby">      puts &quot;please choose new coordinates&quot;</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="13">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="14">
+          <span class="hits">1</span>
           
-          <code class="ruby">      placement_compliance(length, gets.chomp.split(&#39; &#39;),board)</code>
+          <code class="ruby">      submission = verify_submission(gets.chomp.split(&#39; &#39;))</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="14">
+        <li class="covered" data-hits="1" data-linenumber="15">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="15">
-          
-          
-          <code class="ruby">  end</code>
+          <code class="ruby">      placement_compliance(length, submission, board)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="16">
           
           
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="17">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="18">
+          
+          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="17">
+        <li class="covered" data-hits="1" data-linenumber="19">
           <span class="hits">1</span>
           
           <code class="ruby">  def compliant?(length, coordinates)</code>
         </li>
       
-        <li class="covered" data-hits="13" data-linenumber="18">
-          <span class="hits">13</span>
+        <li class="covered" data-hits="11" data-linenumber="20">
+          <span class="hits">11</span>
           
           <code class="ruby">    coordinates.pop if coordinates.length == 3</code>
         </li>
       
-        <li class="covered" data-hits="13" data-linenumber="19">
-          <span class="hits">13</span>
+        <li class="covered" data-hits="11" data-linenumber="21">
+          <span class="hits">11</span>
           
           <code class="ruby">    coordinates = coordinates.join.split(&#39;&#39;)</code>
         </li>
       
-        <li class="covered" data-hits="13" data-linenumber="20">
-          <span class="hits">13</span>
+        <li class="covered" data-hits="11" data-linenumber="22">
+          <span class="hits">11</span>
           
           <code class="ruby">    if ship_too_long(length, coordinates) </code>
-        </li>
-      
-        <li class="covered" data-hits="4" data-linenumber="21">
-          <span class="hits">4</span>
-          
-          <code class="ruby">      &quot;Coordinates must correspond to the first and last units of the ship. (IE: You can’t place a two unit ship at “A1 A3”)&quot;</code>
-        </li>
-      
-        <li class="covered" data-hits="9" data-linenumber="22">
-          <span class="hits">9</span>
-          
-          <code class="ruby">    elsif ship_wraps_board(coordinates)</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="23">
           <span class="hits">2</span>
           
-          <code class="ruby">      &quot;Ships cannot wrap around the board&quot;</code>
-        </li>
-      
-        <li class="covered" data-hits="7" data-linenumber="24">
-          <span class="hits">7</span>
-          
-          <code class="ruby">    elsif ship_too_short(length, coordinates) || same_coordinates(coordinates)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="25">
-          
-          
           <code class="ruby">      &quot;Coordinates must correspond to the first and last units of the ship. (IE: You can’t place a two unit ship at “A1 A3”)&quot;</code>
+        </li>
+      
+        <li class="covered" data-hits="9" data-linenumber="24">
+          <span class="hits">9</span>
+          
+          <code class="ruby">    elsif ship_wraps_board(coordinates)</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="25">
+          <span class="hits">2</span>
+          
+          <code class="ruby">      &quot;Ships cannot wrap around the board&quot;</code>
         </li>
       
         <li class="covered" data-hits="7" data-linenumber="26">
           <span class="hits">7</span>
           
+          <code class="ruby">    elsif ship_too_short(length, coordinates) || same_coordinates(coordinates)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="27">
+          
+          
+          <code class="ruby">      &quot;Coordinates must correspond to the first and last units of the ship. (IE: You can’t place a two unit ship at “A1 A3”)&quot;</code>
+        </li>
+      
+        <li class="covered" data-hits="7" data-linenumber="28">
+          <span class="hits">7</span>
+          
           <code class="ruby">    elsif ship_diagonal(coordinates)</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="27">
+        <li class="covered" data-hits="3" data-linenumber="29">
           <span class="hits">3</span>
           
           <code class="ruby">      &quot;Ships must be horizontal or vertical&quot;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="28">
+        <li class="never" data-hits="" data-linenumber="30">
           
           
           <code class="ruby">    else</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="29">
+        <li class="covered" data-hits="4" data-linenumber="31">
           <span class="hits">4</span>
           
           <code class="ruby">      :valid</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="30">
+        <li class="never" data-hits="" data-linenumber="32">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="31">
+        <li class="never" data-hits="" data-linenumber="33">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="32">
+        <li class="never" data-hits="" data-linenumber="34">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="33">
+        <li class="covered" data-hits="1" data-linenumber="35">
           <span class="hits">1</span>
           
           <code class="ruby">  def ship_too_long(length, coordinates)</code>
         </li>
       
-        <li class="covered" data-hits="197" data-linenumber="34">
-          <span class="hits">197</span>
+        <li class="covered" data-hits="188" data-linenumber="36">
+          <span class="hits">188</span>
           
           <code class="ruby">    (coordinates[3].ord - coordinates[1].ord) &gt;= length ||(coordinates[2].ord - coordinates[0].ord) &gt;= length</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="35">
+        <li class="never" data-hits="" data-linenumber="37">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="36">
+        <li class="never" data-hits="" data-linenumber="38">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="37">
+        <li class="covered" data-hits="1" data-linenumber="39">
           <span class="hits">1</span>
           
           <code class="ruby">  def ship_too_short(length, coordinates)</code>
         </li>
       
-        <li class="covered" data-hits="29" data-linenumber="38">
+        <li class="covered" data-hits="29" data-linenumber="40">
           <span class="hits">29</span>
           
           <code class="ruby">    !((coordinates[3].ord - coordinates[1].ord) == (length-1) ||(coordinates[2].ord - coordinates[0].ord) == (length-1))</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="39">
+        <li class="never" data-hits="" data-linenumber="41">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="40">
+        <li class="never" data-hits="" data-linenumber="42">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="41">
+        <li class="covered" data-hits="1" data-linenumber="43">
           <span class="hits">1</span>
           
           <code class="ruby">  def ship_wraps_board(coordinates)</code>
         </li>
       
-        <li class="covered" data-hits="152" data-linenumber="42">
-          <span class="hits">152</span>
+        <li class="covered" data-hits="147" data-linenumber="44">
+          <span class="hits">147</span>
           
           <code class="ruby">    coordinates[1].ord &gt; coordinates[3].ord || coordinates[0].ord &gt; coordinates[2].ord  </code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="43">
+        <li class="never" data-hits="" data-linenumber="45">
           
           
           <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="44">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="45">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def ship_diagonal(coordinates)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="46">
           
           
-          <code class="ruby">    coordinates[1].to_i != coordinates[3].to_i &amp;&amp;</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="55" data-linenumber="47">
-          <span class="hits">55</span>
+        <li class="covered" data-hits="1" data-linenumber="47">
+          <span class="hits">1</span>
           
-          <code class="ruby">    coordinates[0] != coordinates[2]</code>
+          <code class="ruby">  def ship_diagonal(coordinates)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="48">
           
           
+          <code class="ruby">    coordinates[1].to_i != coordinates[3].to_i &amp;&amp;</code>
+        </li>
+      
+        <li class="covered" data-hits="55" data-linenumber="49">
+          <span class="hits">55</span>
+          
+          <code class="ruby">    coordinates[0] != coordinates[2]</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="50">
+          
+          
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="49">
+        <li class="never" data-hits="" data-linenumber="51">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="50">
+        <li class="covered" data-hits="1" data-linenumber="52">
           <span class="hits">1</span>
           
           <code class="ruby">  def same_coordinates(coordinates)</code>
         </li>
       
-        <li class="covered" data-hits="42" data-linenumber="51">
-          <span class="hits">42</span>
+        <li class="covered" data-hits="40" data-linenumber="53">
+          <span class="hits">40</span>
           
           <code class="ruby">    (coordinates[0] == coordinates[2]) &amp;&amp; (coordinates[1] == coordinates[3])</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="52">
+        <li class="never" data-hits="" data-linenumber="54">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="53">
+        <li class="never" data-hits="" data-linenumber="55">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="54">
+        <li class="covered" data-hits="1" data-linenumber="56">
           <span class="hits">1</span>
           
           <code class="ruby">  def check_fleet(length, coordinates, board)</code>
         </li>
       
-        <li class="covered" data-hits="171" data-linenumber="55">
-          <span class="hits">171</span>
+        <li class="covered" data-hits="160" data-linenumber="57">
+          <span class="hits">160</span>
           
           <code class="ruby">    check = board.interpolate_coordinates(coordinates)</code>
         </li>
       
-        <li class="covered" data-hits="171" data-linenumber="56">
-          <span class="hits">171</span>
+        <li class="covered" data-hits="160" data-linenumber="58">
+          <span class="hits">160</span>
           
           <code class="ruby">    (board.fleet.values.flatten.include?(check[0]) || board.fleet.values.flatten.include?(check[1]) ||</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="57">
+        <li class="never" data-hits="" data-linenumber="59">
           
           
           <code class="ruby">    board.fleet.values.flatten.include?(check[2]))</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="58">
+        <li class="never" data-hits="" data-linenumber="60">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="59">
+        <li class="never" data-hits="" data-linenumber="61">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="62">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def verify_submission(submission)</code>
+        </li>
+      
+        <li class="covered" data-hits="5" data-linenumber="63">
+          <span class="hits">5</span>
+          
+          <code class="ruby">    if submission.length != 2 </code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="64">
+          
+          
+          <code class="ruby">      puts &quot;Please enter two coordinates separated by a space.(i.e A1 A2 for 2 unit ship or B1 B3 for three unit ship)&quot;</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="65">
+          
+          
+          <code class="ruby">      verify_submission(gets.chomp.split(&#39; &#39;))</code>
+        </li>
+      
+        <li class="covered" data-hits="5" data-linenumber="66">
+          <span class="hits">5</span>
+          
+          <code class="ruby">    elsif !outside_grid(submission)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="67">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      puts &quot;Please enter two coordinates that are within the selected grid size&quot;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="68">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      verify_submission(gets.chomp.split(&#39; &#39;))</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="69">
+          
+          
+          <code class="ruby">    else</code>
+        </li>
+      
+        <li class="covered" data-hits="4" data-linenumber="70">
+          <span class="hits">4</span>
+          
+          <code class="ruby">      submission</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="71">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="72">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="73">
+          
+          
+          <code class="ruby">  </code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="74">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def outside_grid(coordinates)</code>
+        </li>
+      
+        <li class="covered" data-hits="5" data-linenumber="75">
+          <span class="hits">5</span>
+          
+          <code class="ruby">    coordinates.all? do |coordinate|</code>
+        </li>
+      
+        <li class="covered" data-hits="10" data-linenumber="76">
+          <span class="hits">10</span>
+          
+          <code class="ruby">      (&quot;A&quot;..&quot;D&quot;).to_a.include?(coordinate.split(&#39;&#39;)[0]) &amp;&amp;</code>
+        </li>
+      
+        <li class="covered" data-hits="20" data-linenumber="77">
+          <span class="hits">20</span>
+          
+          <code class="ruby">      (&quot;1&quot;..&quot;4&quot;).to_a.include?(coordinate.split(&#39;&#39;)[1])</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="78">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="79">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="80">
+          
+          
+          <code class="ruby">  </code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="81">
+          
+          
+          <code class="ruby"> </code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="82">
           
           
           <code class="ruby">end</code>

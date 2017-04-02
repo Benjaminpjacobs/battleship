@@ -1,4 +1,5 @@
 require "./lib/boardmaker_module"
+
 class Board
   include BoardMaker
   attr_accessor :board, :fleet

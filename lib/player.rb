@@ -7,6 +7,7 @@ class Player
     @board.setup
     @moves = []
   end
+  
   def guess
     puts "Where would you like to shoot?"
     coordinate = gets.chomp
