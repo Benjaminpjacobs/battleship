@@ -17,7 +17,7 @@ class Player
   end
 
   def guess
-    @moves << gets.chomp
+    @moves << gets.chomp.upcase
     @moves.last
   end
 end

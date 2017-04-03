@@ -20,7 +20,7 @@ class BattleshipTest < Minitest::Test
   end
   def test_quit
     b = Battleship.new
-    actual = b.end_message
+    actual = b.quit_message
     assert_nil actual
   end
   def test_battleship

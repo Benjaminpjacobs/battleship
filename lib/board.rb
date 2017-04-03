@@ -21,12 +21,12 @@ class Board
 
   def hit(coordinate)
     coordinate = parse_location(coordinate)
-    @board[coordinate[0]][coordinate[1]] = "H "
+    @board[coordinate[0]][coordinate[1]] = "  H  "
   end
 
   def miss(coordinate)
     coordinate = parse_location(coordinate)
-    @board[coordinate[0]][coordinate[1]] = "M "
+    @board[coordinate[0]][coordinate[1]] = "  M  "
   end
 
   def add_ship(ship, coordinates, user=nil)
@@ -51,7 +51,7 @@ class Board
 
   def already_played(coordinate)
     coordinate = parse_location(coordinate)
-    @board[coordinate[0]][coordinate[1]] == "M " || @board[coordinate[0]][coordinate[1]] == "H "
+    @board[coordinate[0]][coordinate[1]] == "  M  " || @board[coordinate[0]][coordinate[1]] == "  H  "
   end
 
   def interpolate_coordinates(coordinates)
@@ -66,7 +66,7 @@ class Board
   def display_ship_on_board(coordinates)
     coordinates.each do |coordinate|
       location = parse_location(coordinate)
-      @board[location[0]][location[1]] = "∆ "
+      @board[location[0]][location[1]] = "  ∆  "
     end
   end
 

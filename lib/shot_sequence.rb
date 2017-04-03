@@ -1,8 +1,9 @@
 require './lib/setup_module'
+require './lib/messages'
 require 'pry'
 
 class ShotSequence
-  include Setup
+  include Setup, Messages
   attr_accessor :offensive_player, :defensive_player
 
   def initialize(offensive_player, defensive_player)
@@ -20,16 +21,15 @@ class ShotSequence
 
   def shot_prompt
     defensive_player.show_board
-    puts ''
-    puts "Please enter a target"
+    puts TARGET_PROMPT
     verify_submission(offensive_player.guess.split(' '), 1).join
   end
 
   def evaluate_target(coordinate)
     status = defensive_player.board.evaluate_move(coordinate)
-    if status == "H "
+    if status == "  H  "
       sunk?(coordinate)
-    elsif status == "M "
+    elsif status == "  M  "
       miss_message(coordinate)
     else
       reinitiate_shot
@@ -40,7 +40,7 @@ class ShotSequence
     if offensive_player.is_a?(Computer)
       evaluate_target(offensive_player.guess)
     elsif offensive_player.is_a?(Player)
-      puts "You have already tried that location"
+      puts PICK_ANOTHER
       new_shot = verify_submission(offensive_player.guess.split(' '), 1).join
       evaluate_target(new_shot)
     end
@@ -49,24 +49,31 @@ class ShotSequence
   def hit_message(coordinate)
     update_defensive_fleet(coordinate)
     defensive_player.show_board
-    puts "Direct hit at #{coordinate}!"
-    "Direct hit at #{coordinate}!"
+    puts direct_hit(coordinate)
   end
 
   def miss_message(coordinate)
     defensive_player.show_board
-    puts "Miss at #{coordinate}!"
-    "Miss at #{coordinate}!"
+    puts miss(coordinate)
   end
 
   def sunk?(coordinate)
     if ship = defensive_player.fleet.key([coordinate])
       update_defensive_fleet(coordinate)
       defensive_player.show_board
-      puts "You sunk my #{ship}-unit ship!"
-      "You sunk my #{ship}-unit ship!"
+      sunk_message(ship, defensive_player)
     else
       hit_message(coordinate)
+    end
+  end
+
+  def sunk_message(ship, defensive_player)
+    if defensive_player.is_a?(Computer)
+      puts "You sunk my #{ship}-unit ship!"
+      `say -v Ralph "You sunk my #{ship}-unit ship!"`
+    else
+      puts "I sunk your #{ship}-unit ship!"
+      `say -v Ralph "I sunk your #{ship}-unit ship!"`
     end
   end
 

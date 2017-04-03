@@ -1,8 +1,8 @@
 module BoardMaker
   INDEX_TO_LETTERS = {
-    2 => "A ",  3 => "B ",  4 => "C ", 5 => "D ",
-    6 => "E ",  7 => "F ",  8 => "G ", 9 => "H ",   
-    10 => "I ", 11 => "J ", 12=> "K ", 13 => "L "
+    2 => "  A  ",  3 => "  B  ",  4 => "  C  ", 5 => "  D  ",
+    6 => "  E  ",  7 => "  F  ",  8 => "  G  ", 9 => "  H  ",   
+    10 => "  I  ", 11 => "  J  ", 12=> "  K  ", 13 => "  L  "
   }
 
   SIZE = {
@@ -12,7 +12,7 @@ module BoardMaker
   }
 
   def make_board(level)
-    board = Array.new(SIZE[level][0]){Array.new(SIZE[level][1], '  ')}
+    board = Array.new(SIZE[level][0]){Array.new(SIZE[level][1], '     ')}
     header_and_footer(board)
     fill_in_top_row(board)
     fill_in_side(board)
@@ -20,16 +20,16 @@ module BoardMaker
   end
 
   def header_and_footer(board)
-    board[0].map!{|space| space = "=="} 
-    board[-1].map!{|space| space = "=="} 
+    board[0].map!{|space| space = "====="} 
+    board[-1].map!{|space| space = "====="} 
   end
 
   def fill_in_top_row(board)
     for i in (0..board[1].length-1)
       if i.zero?
-        board[1][0] = ". "
+        board[1][0] = "  .  "
       else
-        board[1][i] = "#{i} "
+        board[1][i] = "  #{i}  "
       end
     end
   end

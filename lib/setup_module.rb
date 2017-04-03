@@ -1,17 +1,18 @@
+require './lib/messages'
 module Setup
+  include Messages
   
   def placement_compliance(length, coordinates, board)
     if length == 3 && check_fleet(length, coordinates, board)
-      puts "Ships cannot overlap"
-      puts "please choose new coordinates"
-      submission = verify_submission(gets.chomp.split(' '), 2)
+      puts SHIPS_OVERLAP
+      submission = verify_submission(gets.chomp.upcase.split(' '), 2)
       placement_compliance(length, submission, board)
     elsif compliant?(length, coordinates) == :valid
       coordinates
     else
       puts compliant?(length, coordinates)
-      puts "please choose new coordinates"
-      submission = verify_submission(gets.chomp.split(' '), 2)
+      puts RE_ENTER
+      submission = verify_submission(gets.chomp.upcase.split(' '), 2)
       placement_compliance(length, submission, board)
     end
   end
@@ -20,13 +21,13 @@ module Setup
     coordinates.pop if coordinates.length == 3
     coordinates = coordinates.join.split('')
     if ship_too_long(length, coordinates) 
-      "Coordinates must correspond to the first and last units of the ship. (IE: You can’t place a two unit ship at “A1 A3”)"
+      SHIP_TOO_LONG_OR_SHORT
     elsif ship_wraps_board(coordinates)
-      "Ships cannot wrap around the board"
+      SHIP_CANNOT_WRAP
     elsif ship_too_short(length, coordinates) || same_coordinates(coordinates)
-      "Coordinates must correspond to the first and last units of the ship. (IE: You can’t place a two unit ship at “A1 A3”)"
+      SHIP_TOO_LONG_OR_SHORT
     elsif ship_diagonal(coordinates)
-      "Ships must be horizontal or vertical"
+      CANNOT_BE_DIAGONAL
     else
       :valid
     end
@@ -61,11 +62,11 @@ module Setup
 
   def verify_submission(submission, expected_length)
     if submission.length != expected_length 
-      puts "Please enter two coordinates separated by a space.(i.e A1 A2 for 2 unit ship or B1 B3 for three unit ship)"
-      verify_submission(gets.chomp.split(' '), expected_length)
+      puts IMPROPER_INPUT
+      verify_submission(gets.chomp.upcase.split(' '), expected_length)
     elsif !outside_grid(submission)
-      puts "Please enter two coordinates that are within the selected grid size"
-      verify_submission(gets.chomp.split(' '), expected_length)
+      puts OUTSIDE_GRID
+      verify_submission(gets.chomp.upcase.split(' '), expected_length)
     else
       submission
     end

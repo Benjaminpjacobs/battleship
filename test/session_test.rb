@@ -55,16 +55,13 @@ class SessionTest < Minitest::Test
   #   assert_equal expected, actual
   # end
 
-  # def test_it_can_have_computer_make_fleet_on_initialize
+  # def test_session_game_flow
   #   s = Session.new
-  #   s.computer.board.display_board
-  #   actual = s.computer.board.fleet.keys
-  #   expected = [2,3]
-  #   assert_equal expected, actual
+  #   s.game_flow
   # end
 
-  def test_session_game_flow
+  def test_game_end_sequence
     s = Session.new
-    s.game_flow
+    s.game_end_sequence
   end
 end
