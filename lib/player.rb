@@ -8,15 +8,16 @@ class Player
     @moves = []
   end
   
+  def show_board
+    @board.display_board
+  end
+
+  def fleet
+    @board.fleet
+  end
+
   def guess
-    # puts "Where would you like to shoot?"
-    coordinate = gets.chomp
-    if @moves.include?(coordinate)
-      puts "You've already shot there"
-      guess
-    else
-      @moves << coordinate
-    end
-    coordinate
+    @moves << gets.chomp
+    @moves.last
   end
 end

@@ -12,14 +12,17 @@ class Computer
     @moves = []
   end
 
+  def show_board
+    @board.display_board
+  end
+
+  def fleet
+    @board.fleet
+  end
+
   def guess
-    coordinate = generate_coordinate 
-    # if @moves.include?(coordinate)
-    #   guess
-    # else
-      @moves << coordinate
-  #   end
-   coordinate
+    @moves << generate_coordinate
+    @moves.last
   end
 
   def make_fleet

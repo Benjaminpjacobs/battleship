@@ -8,17 +8,53 @@ class Session
   include Setup
   attr_reader :start_time, :player, :computer
   def initialize
-    @start_time = Time.now.strftime("%H:%M:%S")
+    @start_time = Time.now
     @player = Player.new
     @computer = Computer.new
     @computer.make_fleet
   end
   
-  # def game_flow
-  #   get_player_fleet
-  #   until @computer.board.fleet.values.empty? || @player.board.fleet.values.empty?
-      
-  # end
+  def game_flow
+    get_player_fleet
+    loop do 
+      puts "=========== "
+      puts "Player Turn:"
+      ShotSequence.new(@player, @computer).new_turn
+      break if end_of_game?
+      puts "--press return to continue--"
+      sleep until gets.chomp == ''
+      puts "=========== "
+      puts "Computer Turn:"
+      ShotSequence.new(@computer, @player).new_turn
+      break if end_of_game?
+      puts "--press return to continue--"
+      sleep until gets.chomp == ''
+    end
+    game_over
+  end
+
+  def game_over
+    game_time = calculate_game_time
+    winner =  if @player.moves.uniq.length > @computer.moves.uniq.length
+                "Player"
+              else
+                "Computer"
+              end
+    turns = @player.moves.uniq.length
+    puts "==========="
+    puts "GAME - OVER"
+    puts "Game Stats:"
+    puts "Winner: #{winner} "
+    puts "TurnCount: #{turns}"
+    puts "GameTime: #{game_time}seconds"
+  end
+
+  def calculate_game_time
+    ((@time.min * 60) + @time.sec)
+  end
+  def end_of_game?
+    @computer.fleet.values.flatten.empty? || @player.fleet.values.flatten.empty?
+  end
   
   def get_player_fleet
     puts "I have laid out my ships on the grid.
