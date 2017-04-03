@@ -40,11 +40,18 @@ class Board
   
   
   def evaluate_move(coordinates)
-    if @fleet.values.flatten.include?(coordinates)
+    if already_played(coordinates)
+      return false
+    elsif @fleet.values.flatten.include?(coordinates)
       hit(coordinates)
     else
       miss(coordinates)
     end
+  end
+
+  def already_played(coordinate)
+    coordinate = parse_location(coordinate)
+    @board[coordinate[0]][coordinate[1]] == "M " || @board[coordinate[0]][coordinate[1]] == "H "
   end
 
   def interpolate_coordinates(coordinates)

@@ -9,7 +9,7 @@ class Player
   end
   
   def guess
-    puts "Where would you like to shoot?"
+    # puts "Where would you like to shoot?"
     coordinate = gets.chomp
     if @moves.include?(coordinate)
       puts "You've already shot there"

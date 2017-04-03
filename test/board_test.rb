@@ -116,12 +116,25 @@ class BoardTest < Minitest::Test
   end
 
   def test_it_can_put_ships_on_the_board
-    b= Board.new
+    b = Board.new
     b.setup
     b.add_ship(2, ["B2","B3"] )
     b.add_ship(3, ["A1","A3"] )
     actual = b.board[2][1]
     expected = "∆ "
     assert_equal expected, actual
+  end
+
+  def test_hit_or_miss_already?
+    b = Board.new
+    b.setup
+    b.add_ship(2, ["B2","B3"] )
+    b.add_ship(3, ["A1","A3"] )
+    b.evaluate_move("A4")
+    assert_equal false, b.evaluate_move("A4")
+    b.evaluate_move("C2")
+    assert_equal false, b.evaluate_move("C2")
+
+    
   end
 end

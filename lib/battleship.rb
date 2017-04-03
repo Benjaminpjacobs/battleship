@@ -47,7 +47,7 @@ class Battleship
 
   def play_battleship
     s = Session.new
-    s.play_game
+    s.game_flow
   end
 end
 

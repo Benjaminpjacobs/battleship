@@ -1,6 +1,7 @@
 require "./lib/player"
 require "./lib/computer"
 require "./lib/setup_module"
+require "./lib/shot_sequence"
 require 'pry'
 
 class Session
@@ -13,9 +14,11 @@ class Session
     @computer.make_fleet
   end
   
-  def play_game
-    
-  end
+  # def game_flow
+  #   get_player_fleet
+  #   until @computer.board.fleet.values.empty? || @player.board.fleet.values.empty?
+      
+  # end
   
   def get_player_fleet
     puts "I have laid out my ships on the grid.
@@ -33,7 +36,7 @@ class Session
 private
   def two_unit_submission
     puts "Enter the squares for the two-unit ship:"
-    submission = verify_submission(gets.chomp.split(' '))
+    submission = verify_submission(gets.chomp.split(' '), 2)
 
     coordinates = placement_compliance(2, submission, @player.board)
     @player.board.add_ship(2, coordinates)
@@ -41,7 +44,7 @@ private
 
   def three_unit_submission
     puts "Enter the squares for the three-unit ship:"
-    submission = verify_submission(gets.chomp.split(' '))
+    submission = verify_submission(gets.chomp.split(' '), 2)
 
     coordinates = placement_compliance(3, submission, @player.board)
     @player.board.add_ship(3, coordinates)

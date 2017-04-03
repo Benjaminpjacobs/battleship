@@ -13,13 +13,13 @@ class Computer
   end
 
   def guess
-    move = generate_coordinate 
-    if @moves.include?(move)
-      guess
-    else
-      @moves << move
-    end
-   move
+    coordinate = generate_coordinate 
+    # if @moves.include?(coordinate)
+    #   guess
+    # else
+      @moves << coordinate
+  #   end
+   coordinate
   end
 
   def make_fleet
@@ -27,7 +27,6 @@ class Computer
     add_to_fleet(2, ship_1)
     ship_2 = validate_ship(3, generate_potential_ship)
     add_to_fleet(3, ship_2)
-    @board.display_board
   end
 
   def generate_coordinate

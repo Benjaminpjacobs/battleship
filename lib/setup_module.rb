@@ -4,14 +4,14 @@ module Setup
     if length == 3 && check_fleet(length, coordinates, board)
       puts "Ships cannot overlap"
       puts "please choose new coordinates"
-      submission = verify_submission(gets.chomp.split(' '))
+      submission = verify_submission(gets.chomp.split(' '), 2)
       placement_compliance(length, submission, board)
     elsif compliant?(length, coordinates) == :valid
       coordinates
     else
       puts compliant?(length, coordinates)
       puts "please choose new coordinates"
-      submission = verify_submission(gets.chomp.split(' '))
+      submission = verify_submission(gets.chomp.split(' '), 2)
       placement_compliance(length, submission, board)
     end
   end
@@ -59,13 +59,13 @@ module Setup
     board.fleet.values.flatten.include?(check[2]))
   end
 
-  def verify_submission(submission)
-    if submission.length != 2 
+  def verify_submission(submission, expected_length)
+    if submission.length != expected_length 
       puts "Please enter two coordinates separated by a space.(i.e A1 A2 for 2 unit ship or B1 B3 for three unit ship)"
-      verify_submission(gets.chomp.split(' '))
+      verify_submission(gets.chomp.split(' '), expected_length)
     elsif !outside_grid(submission)
       puts "Please enter two coordinates that are within the selected grid size"
-      verify_submission(gets.chomp.split(' '))
+      verify_submission(gets.chomp.split(' '), expected_length)
     else
       submission
     end
