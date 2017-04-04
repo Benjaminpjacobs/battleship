@@ -41,11 +41,12 @@ The grid has A1 at the top left and
 D4 at the bottom right.
 
 "
-  TWO_UNIT_SHIP = 
-"Enter the squares for the two-unit ship:"
-
-  THREE_UNIT_SHIP =
-"Enter the squares for the three-unit ship:"
+UNIT_SHIP = { 
+  2 => "Enter the squares for the two-unit ship:",
+  3 => "Enter the squares for the three-unit ship:",
+  4 => "Enter the squares for the four-unit ship:",
+  5 => "Enter the squares for the five-unit ship:"
+} 
   
   PLAYER_TURN =
 "=========== 
@@ -54,6 +55,10 @@ Player Turn:"
   COMPUTER_TURN =
 "=========== 
 Computer Turn:"
+
+def which_player(turn)
+  turn.odd? ? PLAYER_TURN : COMPUTER_TURN
+end
 
   RETURN_MESSAGE = 
 "--press return to continue--"

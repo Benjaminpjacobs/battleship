@@ -16,6 +16,10 @@ class Player
     @board.fleet
   end
 
+  def add_ship(size, coordinates)
+    @board.add_ship(size, coordinates)
+  end
+
   def guess
     @moves << gets.chomp.upcase
     @moves.last.split(' ')

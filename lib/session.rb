@@ -18,19 +18,18 @@ class Session
   def game_flow
     @computer.make_fleet
     get_player_fleet
-    game_loop
+    game_loop(@player, @computer)
     game_end_sequence
   end
 
-  def game_loop
+  def game_loop(offense, defense)
+    turn = 1
     loop do 
-      puts PLAYER_TURN
-      ShotSequence.new(@player, @computer).new_turn
+      puts which_player(turn=1)
+      ShotSequence.new(offense, defense).new_turn
       break if winner?
-      sleep until return_to_continue
-      puts COMPUTER_TURN
-      ShotSequence.new(@computer, @player).new_turn
-      break if winner?
+      offense, defense = defense, offense
+      turn += 1
       sleep until return_to_continue
     end
   end
@@ -44,10 +43,17 @@ class Session
     puts NEW_GAME
   end
 
-  def get_player_fleet
+  def get_player_fleet(largest_ship=3)
     puts GET_PLAYER_FLEET
-    unit_submission(2, TWO_UNIT_SHIP)
-    unit_submission(3, THREE_UNIT_SHIP)
+    add_ships(largest_ship)
+  end
+
+  def add_ships(largest_ship)
+    for i in (2..largest_ship)
+      puts UNIT_SHIP[i]
+      submission = get_input
+      unit_submission(i, submission)
+    end
   end
 
 private
@@ -87,11 +93,10 @@ private
   end
   
 
-  def unit_submission(size, message)
-    puts message
-    submission = verify_submission(get_input, 2)
+  def unit_submission(size, submission)
+    submission = verify_submission(submission, 2)
     coordinates = placement_compliance(size, submission, @player.board)
-    @player.board.add_ship(size, coordinates)
+    @player.add_ship(size, coordinates)
   end
 
 end
