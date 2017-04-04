@@ -4,7 +4,8 @@ module Messages
 Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
 
   QUITTER = 
-"You'll never sink my battleship with THAT attitude!" 
+"You'll never sink my battleship with THAT attitude!"
+
 
   INSTRUCTIONS = 
 "The object of Battleship is to try and sink all of 

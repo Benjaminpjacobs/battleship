@@ -18,6 +18,6 @@ class Player
 
   def guess
     @moves << gets.chomp.upcase
-    @moves.last
+    @moves.last.split(' ')
   end
 end

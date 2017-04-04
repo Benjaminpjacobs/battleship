@@ -7,22 +7,21 @@ class ShotSequence
   attr_accessor :offensive_player, :defensive_player
 
   def initialize(offensive_player, defensive_player)
-    @offensive_player, @defensive_player  = offensive_player, defensive_player 
+    @offensive_player, @defensive_player = offensive_player, defensive_player 
   end
 
   def new_turn
     if offensive_player.is_a?(Computer)
       evaluate_target(offensive_player.guess)
     else
-      move = shot_prompt
-      evaluate_target(move)
+      evaluate_target(shot_prompt)
     end
   end
 
   def shot_prompt
     defensive_player.show_board
     puts TARGET_PROMPT
-    verify_submission(offensive_player.guess.split(' '), 1).join
+    verify_submission(offensive_player.guess, 1).join
   end
 
   def evaluate_target(coordinate)
@@ -41,8 +40,7 @@ class ShotSequence
       evaluate_target(offensive_player.guess)
     elsif offensive_player.is_a?(Player)
       puts PICK_ANOTHER
-      new_shot = verify_submission(offensive_player.guess.split(' '), 1).join
-      evaluate_target(new_shot)
+      evaluate_target(verify_submission(shot_prompt, 1).join)
     end
   end
 
