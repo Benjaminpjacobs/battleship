@@ -6,30 +6,37 @@ class BattleshipTest < Minitest::Test
     b = Battleship.new
     assert_instance_of Battleship, b
   end
-  def test_battleship_menu
+
+  def test_welcome
     b = Battleship.new
-    expected = nil
-    actual = b.menu
-    assert_equal expected, actual
+    assert_nil b.welcome
   end
+
   def test_instructions
     b = Battleship.new
-    actual = b.instructions
-    expected = nil
-    assert_equal expected, actual  
+    assert_nil b.instructions 
   end
+
   def test_quit
     b = Battleship.new
     actual = b.quit_message
-    assert_nil actual
+    expected = ''
+    assert_equal expected, actual
   end
+
   def test_battleship
     b = Battleship.new
     actual = b.play_battleship
-    assert_nil actual
+    assert_instance_of Session, actual
   end
-  def test_response
+
+  def test_menu
     b = Battleship.new
-    assert b.response
+    puts " "
+    puts "check loop from i back to q".upcase
+    puts " "
+    actual = b.menu
+    expected = ''
+    assert_equal expected, actual
   end
 end

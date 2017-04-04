@@ -1,32 +1,28 @@
 require "./lib/session.rb"
 require "./lib/messages.rb"
+require 'pry'
 class Battleship
   include Messages
 
   def menu
+    welcome
+    input = player_input
+    loop_till_valid(input)
+    quit_message
+  end
+
+  def welcome
     puts WELCOME
-    response
-  end  
+  end
+ 
+  def instructions
+    puts INSTRUCTIONS
+  end
 
   def quit_message
     puts QUITTER
-    `say -v Ralph "You'll never sink my battleship with that attitude"`
-  end
-
-  def instructions
-    puts INSTRUCTIONS
-    response
-  end
-
-  def response
-    answer = gets.chomp.downcase
-      if answer == "p"
-        play_battleship
-      elsif answer == "i"
-        instructions
-      elsif answer == 'q'
-        quit_message
-      end
+    `say -v Ralph "You'll never sink my battleship with 
+    that attitude"` 
   end
 
   def play_battleship
@@ -34,8 +30,31 @@ class Battleship
     s = Session.new
     s.game_flow
   end
+
+private
+  
+  def loop_till_valid(input)
+    until input == 'q'
+      response(input)
+      input = player_input
+    end
+  end
+
+  def response(answer)
+    if answer == "i" 
+      instructions
+    elsif answer == "p"
+      play_battleship
+    else
+      return
+    end
+  end
+
+  def player_input
+    gets.chomp.downcase
+  end
 end
 
-###############
+##############
 b = Battleship.new
 b.menu

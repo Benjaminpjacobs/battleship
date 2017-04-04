@@ -50,7 +50,7 @@ class ComputerTest < Minitest::Test
     c.add_to_fleet(2, ship)
     ship = c.validate_ship(3, c.generate_potential_ship)
     c.add_to_fleet(3, ship)
-    assert c.compliant?(3, ship)
+    assert c.check_compliance(3, ship)
   end
 
   def test_it_can_make_fleet
@@ -69,15 +69,24 @@ class ComputerTest < Minitest::Test
     assert_equal 3, c.moves.length
   end
 
-  def test_it_cannot_repeat_move
+  def test_show_board
     c = Computer.new
-    c.moves = ["A1", "A2", "A3", "A4", 
-               "B1", "B2", "B3", "B4",
-               "C1", "C2", "C3", "C4", 
-               "D1", "D2", "D3"]
-    c.guess
-    actual = c.moves.pop
-    expected = "D4"
+    expected = [["=====", "=====", "=====", "=====", "====="], 
+                ["  .  ", "  1  ", "  2  ", "  3  ", "  4  "], 
+                ["  A  ", "     ", "     ","     ", "     "], 
+                ["  B  ", "     ", "     ", "     ", "     "], 
+                ["  C  ", "     ", "     ", "     ", "     "], 
+                ["  D  ", "     ", "     ", "     ", "     "], 
+                ["=====", "=====", "=====", "=====", "====="]]
+    actual = c.show_board
     assert_equal expected, actual
   end
+
+  def test_fleet
+    c = Computer.new
+    expected = {}
+    actual = c.fleet
+    assert_equal expected, actual
+  end
+
 end
