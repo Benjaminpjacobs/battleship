@@ -45,11 +45,21 @@ class SessionTest < Minitest::Test
     actual = s.check_compliance(2, ["A1","B2"])
     expected = "Ships must be horizontal or vertical"
     assert_equal expected, actual
+    actual = s.check_compliance(3, ["A1","A2","A3"])
+    expected = "Coordinates must correspond to the first and last units of the ship. (IE: You can’t place a two unit ship at “A1 A3”)"
+    assert_equal expected, actual
     actual = s.check_compliance(2, ["A1", "A2"])
     expected = :valid
     assert_equal expected, actual
   end
   
+  def test_verify_submission
+    s = Session.new
+    actual = s.verify_submission(["A1", "A5"], 2)
+    expected = ["A1", "A2"]
+    assert_equal expected, actual
+  end
+
   def test_placement_compliance
     s = Session.new
     actual = s.placement_compliance(2, ["A1", "B2"], s.player.board)
@@ -62,9 +72,9 @@ class SessionTest < Minitest::Test
     s.game_end_sequence
   end
 
-  # def test_session_game_flow
-  #   s = Session.new
-  #   s.game_flow
-  # end
+  def test_session_game_flow
+    s = Session.new
+    s.game_flow
+  end
 
 end

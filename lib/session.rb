@@ -41,6 +41,7 @@ class Session
     winner =  determine_winner
     `say -v Ralph "GAME OVER, #{winner} wins."`
     end_message(turns, winner, game_time)
+    puts NEW_GAME
   end
 
   def get_player_fleet
@@ -61,7 +62,6 @@ private
   end
 
   def determine_winner
-    binding.pry
     if @player.moves.uniq.length > @computer.moves.uniq.length
       "Player"
     else
