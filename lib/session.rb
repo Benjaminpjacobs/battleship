@@ -3,16 +3,19 @@ require "./lib/computer"
 require "./lib/setup_module"
 require "./lib/shot_sequence"
 require "./lib/messages"
+require "./lib/repl"
 require 'pry'
 
 class Session
   include Setup, Messages
-  attr_reader :start_time, :player, :computer
+  attr_accessor :start_time, :player, :computer, :interface
+
 
   def initialize
     @start_time = Time.now
     @player = Player.new
     @computer = Computer.new
+    @interface = Repl.new
   end
   
   def game_flow
@@ -23,14 +26,14 @@ class Session
   end
 
   def get_player_fleet(level)
-    puts GET_PLAYER_FLEET
+    interface.display(GET_PLAYER_FLEET)
     add_ships(level, @player)
   end
 
   def game_loop(offense, defense)
     turn = 1
     loop do 
-      puts which_player(turn)
+      interface.display(which_player(turn))
       ShotSequence.new(offense, defense).new_turn
       break if winner?
       offense, defense = defense, offense
@@ -50,8 +53,8 @@ class Session
 private
 
   def return_to_continue
-    puts RETURN_MESSAGE
-    if gets.chomp == ''
+    interface.display(RETURN_MESSAGE)
+    if interface.get == ''
       return true 
     else
       return_to_continue
@@ -92,8 +95,8 @@ private
   def add_ships(level, user)
     user.show_board
     for i in (2..level)
-      puts UNIT_SHIP[i]
-      submission = get_input
+      interface.display(UNIT_SHIP[i])
+      submission = interface.get.upcase.split(' ')
       unit_submission(i, submission, user)
       user.show_board
     end

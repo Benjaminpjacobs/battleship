@@ -1,14 +1,17 @@
 require "./lib/board.rb"
 require "./lib/setup_module.rb"
 require "./lib/messages.rb"
+require "./lib/repl.rb"
 
 class Player
   include Setup, Messages
-  attr_accessor :board, :moves
+  attr_accessor :board, :moves, :interface
+
   def initialize
     @board = Board.new
     @board.setup
     @moves = []
+    @interface = Repl.new
   end
   
   def show_board
@@ -28,8 +31,8 @@ class Player
   end
 
   def guess
-    puts TARGET_PROMPT
-    @moves << gets.chomp.upcase
+    interface.display(TARGET_PROMPT)
+    @moves << interface.get.upcase
     submission = @moves.last.split(' ')
     verify_submission(submission, 1).join
   end

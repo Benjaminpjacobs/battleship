@@ -6,6 +6,9 @@ Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
   QUITTER = 
 "You'll never sink my battleship with THAT attitude!"
 
+  PLAY = 
+"Let's play battle ship"
+
 
   INSTRUCTIONS = 
 "The object of Battleship is to try and sink all of 

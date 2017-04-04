@@ -1,17 +1,19 @@
 require "./lib/boardmaker_module"
+require "./lib/repl"
 
 class Board
   include BoardMaker
-  attr_accessor :board, :fleet
+  attr_accessor :board, :fleet, :interface
 
   def initialize
     @board = [] 
     @fleet = {}
+    @interface = Repl.new
   end
 
   def display_board
     @board.each do |line|
-      puts line.join
+      interface.display(line.join)
     end
   end
   
@@ -37,7 +39,6 @@ class Board
     end
     display_ship_on_board(@fleet[ship]) if user.nil?
   end
-  
   
   def evaluate_move(coordinates)
     if already_played(coordinates)
@@ -72,7 +73,6 @@ class Board
 
 private
 
-
   def parse_location(location)
     location = location.split('')
     turn_string_into_digits(location)
@@ -86,7 +86,6 @@ private
     location
   end
 
-  
   def generate_interpolated_right(coordinates)
     coordinates[0].split('')[0] + coordinates[0].split('')[1].next
   end
@@ -99,7 +98,3 @@ private
     coordinates[0].split('')[0] == coordinates[1].split('')[0]
   end
 end
-
-
-
-############

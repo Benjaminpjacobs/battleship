@@ -1,32 +1,38 @@
 require "./lib/session.rb"
 require "./lib/messages.rb"
+require "./lib/repl.rb"
 require 'pry'
+
 class Battleship
   include Messages
+  attr_accessor :interface
+
+  def initialize
+    @interface = Repl.new
+  end
 
   def menu
     welcome
-    input = player_input
+    input = interface.get
     loop_till_valid(input)
     quit_message
   end
 
   def welcome
-    puts WELCOME
+    interface.display(WELCOME) 
   end
  
   def instructions
-    puts INSTRUCTIONS
+    interface.display(INSTRUCTIONS)
   end
 
   def quit_message
-    puts QUITTER
-    `say -v Ralph "You'll never sink my battleship with 
-    that attitude"` 
+    interface.display(QUITTER)
+    interface.say(QUITTER)
   end
 
   def play_battleship
-    `say -v Ralph "Let's play battle ship"`
+    interface.say(PLAY)
     s = Session.new
     s.game_flow
   end
@@ -36,7 +42,7 @@ private
   def loop_till_valid(input)
     until input == 'q'
       response(input)
-      input = player_input
+      input = interface.get
     end
   end
 
@@ -50,9 +56,6 @@ private
     end
   end
 
-  def player_input
-    gets.chomp.downcase
-  end
 end
 
 ##############

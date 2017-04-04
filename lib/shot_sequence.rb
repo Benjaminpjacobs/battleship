@@ -1,5 +1,6 @@
 require './lib/setup_module'
 require './lib/messages'
+require './lib/repl'
 require 'pry'
 
 class ShotSequence
@@ -8,6 +9,7 @@ class ShotSequence
 
   def initialize(offensive_player, defensive_player)
     @offensive_player, @defensive_player = offensive_player, defensive_player 
+    # @interface = Repl.new
   end
 
   def new_turn
