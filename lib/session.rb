@@ -1,13 +1,13 @@
 require "./lib/player"
 require "./lib/computer"
-require "./lib/setup_module"
-require "./lib/shot_sequence"
+require "./lib/compliance_module"
+require "./lib/shot_sequence_alt"
 require "./lib/messages"
 require "./lib/repl"
 require 'pry'
 
 class Session
-  include Setup, Messages
+  include ComplianceMod, Messages
   attr_accessor :start_time, :player, :computer, :interface
 
 

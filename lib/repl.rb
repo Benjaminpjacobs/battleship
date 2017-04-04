@@ -1,4 +1,7 @@
+require "./lib/compliance_module"
+
 class Repl
+  include ComplianceMod
   def display(message)
     puts message
   end
@@ -10,4 +13,6 @@ class Repl
   def get
     gets.chomp
   end
+
+
 end

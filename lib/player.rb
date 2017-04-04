@@ -1,10 +1,10 @@
 require "./lib/board.rb"
-require "./lib/setup_module.rb"
+require "./lib/compliance_module"
 require "./lib/messages.rb"
 require "./lib/repl.rb"
 
 class Player
-  include Setup, Messages
+  include ComplianceMod, Messages
   attr_accessor :board, :moves, :interface
 
   def initialize

@@ -1,5 +1,5 @@
 require './lib/messages'
-module Setup
+module ComplianceMod
   include Messages
 
   def placement_compliance(length, coordinates, board)

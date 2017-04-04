@@ -1,9 +1,9 @@
 require 'pry'
 require './lib/board'
-require './lib/setup_module'
+require "./lib/compliance_module"
 
 class Computer
-  include Setup
+  include ComplianceMod
 
   attr_accessor :board, :moves
   def initialize(level=:beginner)
