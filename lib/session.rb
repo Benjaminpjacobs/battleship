@@ -22,6 +22,11 @@ class Session
     game_end_sequence
   end
 
+  def get_player_fleet(largest_ship=3)
+    puts GET_PLAYER_FLEET
+    add_ships(largest_ship, @player)
+  end
+
   def game_loop(offense, defense)
     turn = 1
     loop do 
@@ -41,19 +46,6 @@ class Session
     `say -v Ralph "GAME OVER, #{winner} wins."`
     end_message(turns, winner, game_time)
     puts NEW_GAME
-  end
-
-  def get_player_fleet(largest_ship=3)
-    puts GET_PLAYER_FLEET
-    add_ships(largest_ship)
-  end
-
-  def add_ships(largest_ship)
-    for i in (2..largest_ship)
-      puts UNIT_SHIP[i]
-      submission = get_input
-      unit_submission(i, submission)
-    end
   end
 
 private
@@ -91,12 +83,19 @@ private
   def winner?
     @computer.fleet.values.flatten.empty? || @player.fleet.values.flatten.empty?
   end
-  
 
-  def unit_submission(size, submission)
+  def unit_submission(size, submission, user)
     submission = verify_submission(submission, 2)
-    coordinates = placement_compliance(size, submission, @player.board)
-    @player.add_ship(size, coordinates)
+    coordinates = placement_compliance(size, submission, user.board)
+    user.add_ship(size, coordinates)
+  end
+
+  def add_ships(largest_ship, user)
+    for i in (2..largest_ship)
+      puts UNIT_SHIP[i]
+      submission = get_input
+      unit_submission(i, submission, user)
+    end
   end
 
 end
