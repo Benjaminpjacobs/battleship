@@ -92,8 +92,6 @@ Please enter a target:"
   PICK_ANOTHER = 
 "You have already tried that location"
   
-  NEW_GAME =
-"(p)lay again or (q)uit ?"
   def end_message(turns, winner, game_time)
       puts "=============================="
       puts "         GAME OVER            "
@@ -101,6 +99,7 @@ Please enter a target:"
       puts "       TurnCount: #{turns}    "
       puts "      Winner: #{winner}       "
       puts "GameTime: #{game_time}        "
+      puts "  (p)lay again or (q)uit ?    "
   end
 
   def direct_hit(coordinate)

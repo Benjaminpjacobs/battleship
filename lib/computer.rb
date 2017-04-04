@@ -24,6 +24,10 @@ class Computer
     @moves << generate_coordinate
     @moves.last
   end
+  
+  def evaluate_move(coordinate)
+    @board.evaluate_move(coordinate)
+  end
 
   def make_fleet
     ship_1 = validate_ship(2, generate_potential_ship)

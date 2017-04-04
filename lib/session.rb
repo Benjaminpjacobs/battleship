@@ -17,20 +17,20 @@ class Session
   
   def game_flow
     @computer.make_fleet
-    get_player_fleet
+    get_player_fleet(level=3)
     game_loop(@player, @computer)
     game_end_sequence
   end
 
-  def get_player_fleet(largest_ship=3)
+  def get_player_fleet(level)
     puts GET_PLAYER_FLEET
-    add_ships(largest_ship, @player)
+    add_ships(level, @player)
   end
 
   def game_loop(offense, defense)
     turn = 1
     loop do 
-      puts which_player(turn=1)
+      puts which_player(turn)
       ShotSequence.new(offense, defense).new_turn
       break if winner?
       offense, defense = defense, offense
@@ -45,7 +45,6 @@ class Session
     winner =  determine_winner
     `say -v Ralph "GAME OVER, #{winner} wins."`
     end_message(turns, winner, game_time)
-    puts NEW_GAME
   end
 
 private
@@ -90,11 +89,13 @@ private
     user.add_ship(size, coordinates)
   end
 
-  def add_ships(largest_ship, user)
-    for i in (2..largest_ship)
+  def add_ships(level, user)
+    user.show_board
+    for i in (2..level)
       puts UNIT_SHIP[i]
       submission = get_input
       unit_submission(i, submission, user)
+      user.show_board
     end
   end
 

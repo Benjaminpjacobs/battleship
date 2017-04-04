@@ -1,6 +1,9 @@
 require "./lib/board.rb"
+require "./lib/setup_module.rb"
+require "./lib/messages.rb"
 
 class Player
+  include Setup, Messages
   attr_accessor :board, :moves
   def initialize
     @board = Board.new
@@ -20,8 +23,15 @@ class Player
     @board.add_ship(size, coordinates)
   end
 
-  def guess
-    @moves << gets.chomp.upcase
-    @moves.last.split(' ')
+  def evaluate_move(coordinate)
+    @board.evaluate_move(coordinate)
   end
+
+  def guess
+    puts TARGET_PROMPT
+    @moves << gets.chomp.upcase
+    submission = @moves.last.split(' ')
+    verify_submission(submission, 1).join
+  end
+
 end

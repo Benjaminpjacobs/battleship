@@ -11,36 +11,34 @@ class ShotSequence
   end
 
   def new_turn
-    if offensive_player.is_a?(Computer)
-      evaluate_target(offensive_player.guess)
-    else
-      evaluate_target(shot_prompt)
-    end
+    defensive_player.show_board if offensive_player.is_a?(Player)
+    shot_loop(offensive_player)
+    return
   end
 
-  def shot_prompt
-    defensive_player.show_board
-    puts TARGET_PROMPT
-    verify_submission(offensive_player.guess, 1).join
-  end
 
   def evaluate_target(coordinate)
-    status = defensive_player.board.evaluate_move(coordinate)
+    status = defensive_player.evaluate_move(coordinate)
     if status == "  H  "
       sunk?(coordinate)
     elsif status == "  M  "
       miss_message(coordinate)
     else
-      reinitiate_shot
+      "reinitiate_shot"
     end
   end
 
   def reinitiate_shot
-    if offensive_player.is_a?(Computer)
-      evaluate_target(offensive_player.guess)
-    elsif offensive_player.is_a?(Player)
-      puts PICK_ANOTHER
-      evaluate_target(shot_prompt)
+    puts PICK_ANOTHER if offensive_player.is_a?(Player)
+    shot_loop(offensive_player)
+    return
+  end
+
+  def shot_loop(offensive_player)
+    if evaluate_target(offensive_player.guess).nil? 
+      return
+    else
+     reinitiate_shot
     end
   end
 
@@ -68,10 +66,8 @@ class ShotSequence
   def sunk_message(ship, defensive_player)
     if defensive_player.is_a?(Computer)
       puts "You sunk my #{ship}-unit ship!"
-      `say -v Ralph "You sunk my #{ship}-unit ship!"`
-    else
+    elsif defensive_player.is_a?(Player)
       puts "I sunk your #{ship}-unit ship!"
-      `say -v Ralph "I sunk your #{ship}-unit ship!"`
     end
   end
 
