@@ -24,15 +24,16 @@ class BoardTest < Minitest::Test
     b = Board.new
     b.setup
     actual = b.board
-    expected = [["==", "==", "==", "==", "=="], 
-              [". ", "1 ", "2 ", "3 ", "4 "], 
-              ["A ", "  ", "  ", "  ", "  "], 
-              ["B ", "  ", "  ", "  ", "  "], 
-              ["C ", "  ", "  ", "  ", "  "],
-              ["D ", "  ", "  ", "  ", "  "], 
-              ["==", "==", "==", "==", "=="]]
+    expected = [["=====", "=====", "=====", "=====", "====="], 
+                ["  .  ", "  1  ", "  2  ", "  3  ", "  4  "], 
+                ["  A  ", "     ", "     ", "     ", "     "], 
+                ["  B  ", "     ", "     ", "     ", "     "], 
+                ["  C  ", "     ", "     ", "     ", "     "],
+                ["  D  ", "     ", "     ", "     ", "     "], 
+                ["=====", "=====", "=====", "=====", "====="]]
     assert_equal expected, actual
   end
+  
   def test_it_can_setup_intermediate_display
     b = Board.new
     b.setup(:intermediate)
@@ -57,7 +58,7 @@ class BoardTest < Minitest::Test
     b.setup
     b.hit("A3")
     actual = b.board[2][3]
-    expected = "H "
+    expected = "  H  "
     assert_equal expected, actual
   end
 
@@ -67,7 +68,7 @@ class BoardTest < Minitest::Test
     b.hit("A3")
     b.miss("D4")
     actual = b.board[-2][4]
-    expected = "M "
+    expected = "  M  "
     assert_equal expected, actual
   end
 
@@ -97,7 +98,7 @@ class BoardTest < Minitest::Test
     b.add_ship(2, ["B2","B3"] )
     b.add_ship(3, ["A1","A3"] )
     b.evaluate_move("A2")
-    expected = "H "
+    expected = "  H  "
     actual = b.board[2][2]
     assert_equal expected, actual
     b.display_board
@@ -109,7 +110,7 @@ class BoardTest < Minitest::Test
     b.add_ship(2, ["B2","B3"] )
     b.add_ship(3, ["A1","A3"] )
     b.evaluate_move("A4")
-    expected = "M "
+    expected = "  M  "
     actual = b.board[2][4]
     assert_equal expected, actual
     b.display_board
@@ -121,7 +122,7 @@ class BoardTest < Minitest::Test
     b.add_ship(2, ["B2","B3"] )
     b.add_ship(3, ["A1","A3"] )
     actual = b.board[2][1]
-    expected = "∆ "
+    expected = "  ∆  "
     assert_equal expected, actual
   end
 
@@ -134,7 +135,6 @@ class BoardTest < Minitest::Test
     assert_equal false, b.evaluate_move("A4")
     b.evaluate_move("C2")
     assert_equal false, b.evaluate_move("C2")
-
-    
   end
+
 end

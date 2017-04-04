@@ -1,0 +1,10 @@
+task :default => [:test]
+
+task :test do
+  ruby "test/player_test.rb"
+  ruby "test/computer_test.rb"
+  ruby "test/board_test.rb"
+  ruby "test/battleship_test.rb"
+  ruby "test/session_test.rb"
+  ruby "test/shot_sequence_test.rb"
+end

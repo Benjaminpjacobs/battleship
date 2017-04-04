@@ -40,6 +40,6 @@ class Battleship
   end
 end
 
-###############
+##############
 # b = Battleship.new
 # b.menu

@@ -40,7 +40,7 @@ class ShotSequence
       evaluate_target(offensive_player.guess)
     elsif offensive_player.is_a?(Player)
       puts PICK_ANOTHER
-      evaluate_target(verify_submission(shot_prompt, 1).join)
+      evaluate_target(shot_prompt)
     end
   end
 
