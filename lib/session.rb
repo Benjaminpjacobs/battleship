@@ -10,31 +10,34 @@ class Session
   include ComplianceMod, Messages
   attr_accessor :start_time, :player, :computer, :interface
 
+  FLEET_LEVEL = { beginner: 3, intermediate: 4, advanced: 5}
 
-  def initialize
+  def initialize(level=:beginner)
     @start_time = Time.now
-    @player = Player.new
-    @computer = Computer.new
+    @player = Player.new(level)
+    @computer = Computer.new(level)
     @interface = Repl.new
+    @level = level
   end
   
   def game_flow
     @computer.make_fleet
-    get_player_fleet(level=3)
+    binding.pry
+    get_player_fleet(FLEET_LEVEL[@level])
     game_loop(@player, @computer)
     game_end_sequence
   end
 
-  def get_player_fleet(level)
+  def get_player_fleet(level=:beginner)
     interface.display(GET_PLAYER_FLEET)
-    add_ships(level, @player)
+    add_ships(FLEET_LEVEL[level], @player)
   end
 
   def game_loop(offense, defense)
     turn = 1
     loop do 
       interface.display(which_player(turn))
-      ShotSequence.new(offense, defense).new_turn
+      ShotSequence.new(offense, defense, @level).new_turn
       break if winner?
       offense, defense = defense, offense
       turn += 1
@@ -86,18 +89,18 @@ private
     @computer.fleet.values.flatten.empty? || @player.fleet.values.flatten.empty?
   end
 
-  def unit_submission(size, submission, user)
-    submission = verify_submission(submission, 2)
-    coordinates = placement_compliance(size, submission, user.board)
+  def unit_submission(size, submission, user, level)
+    submission = verify_submission(submission, 2, @level)
+    coordinates = placement_compliance(size, submission, user.board, @level)
     user.add_ship(size, coordinates)
   end
 
-  def add_ships(level, user)
+  def add_ships(level=:beginner, user)
     user.show_board
     for i in (2..level)
       interface.display(UNIT_SHIP[i])
       submission = interface.get.upcase.split(' ')
-      unit_submission(i, submission, user)
+      unit_submission(i, submission, user, @level)
       user.show_board
     end
   end

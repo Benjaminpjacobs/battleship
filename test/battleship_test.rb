@@ -1,7 +1,9 @@
 require './test/test_helper'
 require './lib/battleship.rb'
+require './lib/messages'
 
 class BattleshipTest < Minitest::Test
+  include Messages
   def test_it_exists
     b = Battleship.new
     assert_instance_of Battleship, b
@@ -9,18 +11,23 @@ class BattleshipTest < Minitest::Test
 
   def test_welcome
     b = Battleship.new
-    assert_nil b.welcome
+    assert_equal WELCOME, b.welcome
   end
 
   def test_instructions
     b = Battleship.new
-    assert_nil b.instructions 
+    assert_equal INSTRUCTIONS, b.instructions 
   end
 
   def test_quit
     b = Battleship.new
-    actual = b.quit_message
-    expected = ''
+    assert_equal QUITTER, b.quit_message
+  end
+
+  def test_choose_level
+    b= Battleship.new
+    expected = :beginner
+    actual = b.choose_level
     assert_equal expected, actual
   end
 
@@ -35,8 +42,7 @@ class BattleshipTest < Minitest::Test
     puts " "
     puts "check loop from i back to q".upcase
     puts " "
-    actual = b.menu
-    expected = ''
-    assert_equal expected, actual
+    assert_nil b.menu
+
   end
 end

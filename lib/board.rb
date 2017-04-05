@@ -33,7 +33,7 @@ class Board
 
   def add_ship(ship, coordinates, user=nil)
     if ship > 2
-      @fleet[ship] = interpolate_coordinates(coordinates)
+      @fleet[ship] = interpolate_coordinates(ship,coordinates)
     else
       @fleet[ship] = coordinates
     end
@@ -55,13 +55,15 @@ class Board
     @board[coordinate[0]][coordinate[1]] == "  M  " || @board[coordinate[0]][coordinate[1]] == "  H  "
   end
 
-  def interpolate_coordinates(coordinates)
+  def interpolate_coordinates(ship, coordinates)
+    binding.pry
     if same_first_coordinate(coordinates)
-      interpolated = generate_interpolated_right(coordinates)
+      interpolated = generate_interpolated_right(ship, coordinates)
     else
-      interpolated = generate_interpolated_left(coordinates)
+      interpolated = generate_interpolated_left(ship, coordinates)
     end
     coordinates << interpolated
+    coordinates.flatten!
   end
   
   def display_ship_on_board(coordinates)
@@ -80,18 +82,34 @@ private
 
   def turn_string_into_digits(location)
     y_axis = {'A' => 2,'B' => 3,
-              'C' => 4,'D' => 5}
+              'C' => 4,'D' => 5,
+              'E' => 6,'F' => 7,
+              'G' => 8,'H' => 9,
+              'I' => 10, 'J' =>  11,
+              'K' => 12, 'L' => 13}
     location[1] = location[1].to_i
     location[0] = y_axis[location[0]]
     location
   end
 
-  def generate_interpolated_right(coordinates)
-    coordinates[0].split('')[0] + coordinates[0].split('')[1].next
+  def generate_interpolated_right(ship, coordinates)
+    sub_array = []
+    cycle = (coordinates[0][1..-1].."12").to_a
+    (ship-2).times do |i|
+      sub_array << coordinates[0].split('')[0] + cycle[i+1]
+    end
+
+    sub_array
   end
 
-  def generate_interpolated_left(coordinates)
-    coordinates[0].split('')[0].next + coordinates[1].split('')[1]
+  def generate_interpolated_left(ship, coordinates)
+    # binding.pry
+    sub_array = []
+    cycle = (coordinates[0].split('')[0].."L").to_a
+    (ship-2).times do |i|
+      sub_array << cycle[i+1] + coordinates[1][1]
+    end
+    sub_array
   end
 
   def same_first_coordinate(coordinates)

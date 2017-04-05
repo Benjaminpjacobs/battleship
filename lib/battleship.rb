@@ -12,29 +12,38 @@ class Battleship
   end
 
   def menu
-    welcome
+    interface.display(welcome)
     input = interface.get
     loop_till_valid(input)
-    quit_message
+    interface.display(quit_message)
   end
 
   def welcome
-    interface.display(WELCOME) 
+    WELCOME
   end
  
   def instructions
-    interface.display(INSTRUCTIONS)
+    INSTRUCTIONS
   end
 
   def quit_message
-    interface.display(QUITTER)
-    interface.say(QUITTER)
+    QUITTER
   end
 
   def play_battleship
+    level = choose_level
     interface.say(PLAY)
-    s = Session.new
-    s.game_flow
+    s = Session.new(level)
+    # s.game_flow
+  end
+
+  def choose_level
+    interface.display(LEVEL)
+    level = interface.get.downcase
+    levels = {'b' => :beginner,
+              'i' => :intermediate,
+              'a'=> :advanced}
+    levels[level]
   end
 
 private
@@ -48,7 +57,7 @@ private
 
   def response(answer)
     if answer == "i" 
-      instructions
+      interface.display(instructions)
     elsif answer == "p"
       play_battleship
     else
@@ -59,5 +68,5 @@ private
 end
 
 ##############
-b = Battleship.new
-b.menu
+# b = Battleship.new
+# b.menu

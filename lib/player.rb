@@ -7,11 +7,12 @@ class Player
   include ComplianceMod, Messages
   attr_accessor :board, :moves, :interface
 
-  def initialize
+  def initialize(level=:beginner)
     @board = Board.new
-    @board.setup
+    @board.setup(level)
     @moves = []
     @interface = Repl.new
+    @level = level
   end
   
   def show_board
@@ -34,7 +35,7 @@ class Player
     interface.display(TARGET_PROMPT)
     @moves << interface.get.upcase
     submission = @moves.last.split(' ')
-    verify_submission(submission, 1).join
+    verify_submission(submission, 1, @level).join
   end
 
 end

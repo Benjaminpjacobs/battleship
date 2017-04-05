@@ -94,6 +94,9 @@ Please enter a target:"
 
   PICK_ANOTHER = 
 "You have already tried that location"
+
+  LEVEL = 
+"Please choose a level: (b)eginner, (i)ntermediate, or (a)dvanced"
   
   def end_message(turns, winner, game_time)
       puts "=============================="

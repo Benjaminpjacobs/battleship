@@ -5,10 +5,11 @@ require 'pry'
 
 class ShotSequence
   include ComplianceMod, Messages
-  attr_accessor :offensive_player, :defensive_player, :interface
+  attr_accessor :offensive_player, :defensive_player, :interface, :level
 
-  def initialize(offensive_player, defensive_player)
+  def initialize(offensive_player, defensive_player, level)
     @offensive_player, @defensive_player = offensive_player, defensive_player 
+    @level = level
     @interface = Repl.new
   end
 
