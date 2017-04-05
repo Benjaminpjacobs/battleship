@@ -1,7 +1,7 @@
 require "./lib/player"
 require "./lib/computer"
 require "./lib/compliance_module"
-require "./lib/shot_sequence_alt"
+require "./lib/shot_sequence"
 require "./lib/messages"
 require "./lib/repl"
 require "./lib/end_game"

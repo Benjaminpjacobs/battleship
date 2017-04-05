@@ -1,4 +1,6 @@
 require './lib/messages'
+require './lib/repl'
+require 'pry'
 module ComplianceMod
   include Messages
 
@@ -10,11 +12,21 @@ module ComplianceMod
   def verify_submission(submission, expected_length, level=:beginner)
     result = verification(submission, expected_length, level)
     until result.is_a?(Array)
-      puts result
-      submission = get_input
+      interface.display(result)
+      submission = interface.get.upcase.split(' ')
       result = verification(submission, expected_length, level)
     end
-    submission
+    result
+  end
+
+  def placement_compliance(length, coordinates, board, level=:beginner)
+    result = new_submission_valid(length, coordinates, board)
+    until result.is_a?(Array)
+      interface.display(result)
+      coordinates = verify_submission(interface.get.upcase.split(' '), 2, level)
+      result = new_submission_valid(length, coordinates, board)
+    end
+    result
   end
 
   def verification(submission, expected_length, level=:beginnner)
@@ -26,17 +38,7 @@ module ComplianceMod
       submission
     end
   end
-
-  def placement_compliance(length, coordinates, board, level=:beginner)
-    result = new_submission_valid(length, coordinates, board)
-    until result.is_a?(Array)
-      puts result
-      coordinates = verify_submission(get_input, 2, level)
-      result = new_submission_valid(length, coordinates, board)
-    end
-    coordinates
-  end
-  
+ 
   def new_submission_valid(length, coordinates, board)
     if length == 3 && check_fleet(length, coordinates, board)
       SHIPS_OVERLAP
@@ -50,10 +52,12 @@ module ComplianceMod
   def check_compliance(length, coordinates)
     coordinates.pop if coordinates.length == 3
     coordinates = coordinates.join.split('')
+    combine_double_digits(coordinates) if coordinates.length > 4
     display_applicable_error_message(length, coordinates)
   end
 
   def display_applicable_error_message(length, coordinates)
+    
     if ship_too_long(length, coordinates) 
       SHIP_TOO_LONG_OR_SHORT
     elsif ship_wraps_board(coordinates)
@@ -84,12 +88,12 @@ module ComplianceMod
   end
 
   def ship_too_short(length, coordinates)
-    !((coordinates[3].ord - coordinates[1].ord) == (length-1) || 
+    !((coordinates[3].to_i - coordinates[1].to_i) == (length-1) || 
     (coordinates[2].ord - coordinates[0].ord) == (length-1))
   end
 
   def ship_wraps_board(coordinates)
-    coordinates[1].ord > coordinates[3].ord || 
+    coordinates[1].to_i > coordinates[3].to_i || 
     coordinates[0].ord > coordinates[2].ord  
   end
 
@@ -103,16 +107,38 @@ module ComplianceMod
     (coordinates[1] == coordinates[3])
   end
 
-
   def outside_grid(coordinates, level=:beginner)
     coordinates.all? do |coordinate|
-      GRID_SIZE[level][0].include?(coordinate.split('')[0]) &&
-      GRID_SIZE[level][1].include?(coordinate.split('')[1])
+      GRID_SIZE[level][0].include?(coordinate[0]) &&
+      GRID_SIZE[level][1].include?(coordinate[1..-1])
     end
   end
 
-  def get_input
-    gets.chomp.upcase.split(' ')
+  def combine_double_digits(coordinates)
+    if coordinates.length == 5 && ("A".."L").to_a.include?(coordinates[2])
+      combine_fourth_and_fifth(coordinates)
+    elsif coordinates.length == 5 
+      combine_second_and_third(coordinates)
+    else
+      combine_double_doubles(coordinates)
+    end    
+    coordinates
   end
- 
+
+  def combine_fourth_and_fifth(coordinates)
+    coordinates[3] = coordinates[3] + coordinates[4]
+    coordinates.delete_at(4)
+  end
+
+  def combine_second_and_third(coordinates)
+    coordinates[1] = coordinates[1] + coordinates[2]
+    coordinates.delete_at(2)
+  end
+
+  def combine_double_doubles(coordinates)
+    coordinates[1] = coordinates[1] + coordinates[2]
+    coordinates[4] = coordinates[4] + coordinates[5]
+    coordinates.delete_at(2)
+    coordinates.delete_at(4)
+  end
 end

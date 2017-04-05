@@ -1,7 +1,6 @@
 require './test/test_helper'
 require './lib/computer'
 require './lib/repl'
-require 'pry'
 
 class ComputerTest < Minitest::Test
 
@@ -76,7 +75,6 @@ class ComputerTest < Minitest::Test
     assert_equal expected, actual
   end
 
-
   def test_it_can_make_fleet_adv
     @comp = Computer.new(:advanced, Repl.new)
     @comp.make_fleet
@@ -107,6 +105,4 @@ class ComputerTest < Minitest::Test
     expected = ["L", "12", "K", "9"]
     assert_equal expected, actual
   end 
-  
-
 end

@@ -2,13 +2,14 @@ require './test/test_helper'
 require './lib/computer'
 require './lib/player'
 require './lib/end_game'
+require './lib/repl'
 
 class EndGameTest < Minitest::Test
 
   def setup
-    @player = Player.new
+    @player = Player.new(:beginner, Repl.new)
     @player.moves << "A2"
-    @computer = Computer.new
+    @computer = Computer.new(:beginner, Repl.new)
     @start_time = Time.new(2017, 04, 05)
   end
 
@@ -25,8 +26,8 @@ class EndGameTest < Minitest::Test
   end
 
   def test_determine_winner_computer
-    p = Player.new
-    c = Computer.new
+    p = Player.new(:beginner, Repl.new)
+    c = Computer.new(:beginner, Repl.new)
     p.moves << "A2"
     c.moves << "D1"
     eg = EndGame.new(p, c, @start_time)

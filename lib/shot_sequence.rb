@@ -5,17 +5,17 @@ require 'pry'
 
 class ShotSequence
   include ComplianceMod, Messages
-  attr_accessor :offensive_player, :defensive_player
+  attr_accessor :offensive_player, :defensive_player, :interface, :level
 
-  def initialize(offensive_player, defensive_player)
+  def initialize(offensive_player, defensive_player, level, interface)
     @offensive_player, @defensive_player = offensive_player, defensive_player 
-    # @interface = Repl.new
+    @level = level
+    @interface = interface
   end
 
   def new_turn
-    defensive_player.show_board if offensive_player.is_a?(Player)
+    defensive_player.display_board if offensive_player.is_a?(Player)
     shot_loop(offensive_player)
-    return
   end
 
   def evaluate_target(coordinate)
@@ -25,39 +25,39 @@ class ShotSequence
     elsif status == "  M  "
       miss_message(coordinate)
     else
-      "reinitiate_shot"
+      return false
     end
   end
 
   def reinitiate_shot
-    puts PICK_ANOTHER if offensive_player.is_a?(Player)
+    interface.display(PICK_ANOTHER) if offensive_player.is_a?(Player)
     shot_loop(offensive_player)
-    return
   end
 
   def shot_loop(offensive_player)
-    if evaluate_target(offensive_player.guess).nil? 
-      return
+    message = evaluate_target(offensive_player.guess)
+    if message == false
+      reinitiate_shot
     else
-     reinitiate_shot
+     message
     end
   end
 
   def hit_message(coordinate)
     update_defensive_fleet(coordinate)
-    defensive_player.show_board
-    puts direct_hit(coordinate)
+    defensive_player.display_board
+    direct_hit(coordinate)
   end
 
   def miss_message(coordinate)
-    defensive_player.show_board
-    puts miss(coordinate)
+    defensive_player.display_board
+    miss(coordinate)
   end
 
   def sunk?(coordinate)
     if ship = defensive_player.fleet.key([coordinate])
       update_defensive_fleet(coordinate)
-      defensive_player.show_board
+      defensive_player.display_board
       sunk_message(ship, defensive_player)
     else
       hit_message(coordinate)
@@ -66,9 +66,9 @@ class ShotSequence
 
   def sunk_message(ship, defensive_player)
     if defensive_player.is_a?(Computer)
-      puts "You sunk my #{ship}-unit ship!"
+      "You sunk my #{ship}-unit ship!"
     elsif defensive_player.is_a?(Player)
-      puts "I sunk your #{ship}-unit ship!"
+      "I sunk your #{ship}-unit ship!"
     end
   end
 

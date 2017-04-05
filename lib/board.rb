@@ -77,7 +77,8 @@ class Board
 # private
 
   def parse_location(location)
-    location = location.split('')
+    coordinate = []
+    location = Array.new.push(location[0], location[1..-1])
     turn_string_into_digits(location)
   end
 

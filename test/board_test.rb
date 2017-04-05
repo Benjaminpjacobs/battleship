@@ -1,14 +1,13 @@
 require './test/test_helper'
 require './lib/board.rb'
 require './lib/repl'
-require 'pry'
-
 
 class BoardTest < Minitest::Test
 
   def setup
     @board = Board.new(Repl.new)
   end
+
   def test_it_exists
     assert_instance_of Board, @board
   end
@@ -44,14 +43,13 @@ class BoardTest < Minitest::Test
     @board.display_board
   end
 
-    def test_it_can_setup_intermediate_display
+  def test_it_can_setup_intermediate_display
     @board.setup(:advanced)
     actual = @board.board.length
     expected = 15
     assert_equal expected, actual
     @board.display_board
   end
-
 
   def test_it_can_record_hit
     @board.setup
@@ -128,6 +126,7 @@ class BoardTest < Minitest::Test
     @board.evaluate_move("C2")
     assert_equal false, @board.evaluate_move("C2")
   end
+  
   def test_interpolate_coordinates
     refute @board.interpolate_coordinates(5, ["K12", "C10"])
     refute @board.interpolate_coordinates(5, ["K9", "C12"])

@@ -4,6 +4,7 @@ require './lib/messages'
 
 class BattleshipTest < Minitest::Test
   include Messages
+
   def test_it_exists
     b = Battleship.new
     assert_instance_of Battleship, b
@@ -43,6 +44,5 @@ class BattleshipTest < Minitest::Test
     puts "check loop from i back to q".upcase
     puts " "
     assert_nil b.menu
-
   end
 end

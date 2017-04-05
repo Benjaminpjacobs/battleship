@@ -28,8 +28,10 @@ module BoardMaker
     for i in (0..board[1].length-1)
       if i.zero?
         board[1][0] = "  .  "
-      else
+      elsif i < 10
         board[1][i] = "  #{i}  "
+      else 
+        board[1][i] = "  #{i} "
       end
     end
   end
