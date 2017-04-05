@@ -33,8 +33,8 @@ class Battleship
   def play_battleship
     level = choose_level
     interface.say(PLAY)
-    s = Session.new(level)
-    # s.game_flow
+    s = Session.new(level, interface)
+    s.game_flow
   end
 
   def choose_level
@@ -68,5 +68,5 @@ private
 end
 
 ##############
-# b = Battleship.new
-# b.menu
+b = Battleship.new
+b.menu

@@ -5,10 +5,10 @@ class Board
   include BoardMaker
   attr_accessor :board, :fleet, :interface
 
-  def initialize
+  def initialize(interface)
     @board = [] 
     @fleet = {}
-    @interface = Repl.new
+    @interface = interface
   end
 
   def display_board
@@ -56,11 +56,12 @@ class Board
   end
 
   def interpolate_coordinates(ship, coordinates)
-    binding.pry
     if same_first_coordinate(coordinates)
       interpolated = generate_interpolated_right(ship, coordinates)
-    else
+    elsif same_second_coordinate(coordinates)
       interpolated = generate_interpolated_left(ship, coordinates)
+    else
+      return false
     end
     coordinates << interpolated
     coordinates.flatten!
@@ -73,7 +74,7 @@ class Board
     end
   end
 
-private
+# private
 
   def parse_location(location)
     location = location.split('')
@@ -94,25 +95,29 @@ private
 
   def generate_interpolated_right(ship, coordinates)
     sub_array = []
-    cycle = (coordinates[0][1..-1].."12").to_a
+    collection = (coordinates[0][1..-1].."12").cycle
+    collection.next
     (ship-2).times do |i|
-      sub_array << coordinates[0].split('')[0] + cycle[i+1]
+      sub_array << coordinates[0].split('')[0] + collection.next#cycle[i+1]
     end
-
     sub_array
   end
 
   def generate_interpolated_left(ship, coordinates)
-    # binding.pry
     sub_array = []
-    cycle = (coordinates[0].split('')[0].."L").to_a
+    collection = (coordinates[0].split('')[0].."L").cycle
+    collection.next
     (ship-2).times do |i|
-      sub_array << cycle[i+1] + coordinates[1][1]
+      sub_array <<  collection.next + coordinates[1][1..-1]  #cycle[i+1]
     end
     sub_array
   end
 
   def same_first_coordinate(coordinates)
     coordinates[0].split('')[0] == coordinates[1].split('')[0]
+  end
+  
+  def same_second_coordinate(coordinates)
+    coordinates[0][1..-1] == coordinates[1][1..-1]
   end
 end

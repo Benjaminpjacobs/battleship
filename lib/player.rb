@@ -2,33 +2,24 @@ require "./lib/board.rb"
 require "./lib/compliance_module"
 require "./lib/messages.rb"
 require "./lib/repl.rb"
+require 'Forwardable'
 
 class Player
+  extend Forwardable
   include ComplianceMod, Messages
   attr_accessor :board, :moves, :interface
+  
+  def_delegator :@board, :display_board
+  def_delegator :@board, :fleet
+  def_delegator :@board, :add_ship
+  def_delegator :@board, :evaluate_move
 
-  def initialize(level=:beginner)
-    @board = Board.new
+  def initialize(level=:beginner, interface)
+    @interface = interface
+    @board = Board.new(@interface)
     @board.setup(level)
     @moves = []
-    @interface = Repl.new
     @level = level
-  end
-  
-  def show_board
-    @board.display_board
-  end
-
-  def fleet
-    @board.fleet
-  end
-
-  def add_ship(size, coordinates)
-    @board.add_ship(size, coordinates)
-  end
-
-  def evaluate_move(coordinate)
-    @board.evaluate_move(coordinate)
   end
 
   def guess

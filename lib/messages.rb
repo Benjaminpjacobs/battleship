@@ -67,13 +67,16 @@ end
 "--press return to continue--"
 
   SHIP_TOO_LONG_OR_SHORT =
-"Coordinates must correspond to the first and last units of the ship. (IE: You can’t place a two unit ship at “A1 A3”)"
+"Coordinates must correspond to the first and last units of the ship. (IE: You can’t place a two unit ship at “A1 A3”)
+please choose new coordinates:"
 
   SHIP_CANNOT_WRAP =
-"Ships cannot wrap around the board"
+"Ships cannot wrap around the board
+please choose new coordinates:"
 
   CANNOT_BE_DIAGONAL = 
-"Ships must be horizontal or vertical"
+"Ships must be horizontal or vertical
+please choose new coordinates:"
 
   IMPROPER_INPUT = 
 "Please enter two coordinates separated by a space.(i.e A1 A2 for 2 unit ship or B1 B3 for three unit ship):"
@@ -81,8 +84,6 @@ end
   OUTSIDE_GRID = 
 "Please enter two coordinates that are within the selected grid size:"
 
-  RE_ENTER = 
-"please choose new coordinates:"
 
   SHIPS_OVERLAP = 
 "Ships cannot overlap
@@ -93,20 +94,12 @@ please choose new coordinates:"
 Please enter a target:"
 
   PICK_ANOTHER = 
-"You have already tried that location"
+"You have already tried that location
+please choose new coordinates:"
 
   LEVEL = 
 "Please choose a level: (b)eginner, (i)ntermediate, or (a)dvanced"
   
-  def end_message(turns, winner, game_time)
-      puts "=============================="
-      puts "         GAME OVER            "
-      puts "        Game Stats:           "
-      puts "       TurnCount: #{turns}    "
-      puts "      Winner: #{winner}       "
-      puts "GameTime: #{game_time}        "
-      puts "  (p)lay again or (q)uit ?    "
-  end
 
   def direct_hit(coordinate)
     "Direct hit at #{coordinate}!"

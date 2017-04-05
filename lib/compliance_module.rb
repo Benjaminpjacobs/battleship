@@ -8,41 +8,42 @@ module ComplianceMod
               }
 
   def verify_submission(submission, expected_length, level=:beginner)
-    until verification(submission, expected_length, level)
+    result = verification(submission, expected_length, level)
+    until result.is_a?(Array)
+      puts result
       submission = get_input
+      result = verification(submission, expected_length, level)
     end
     submission
   end
 
-  def verification(submission, expected_length, level)
+  def verification(submission, expected_length, level=:beginnner)
     if submission.length != expected_length 
-      puts IMPROPER_INPUT
-      return false
+      IMPROPER_INPUT
     elsif !outside_grid(submission, level)
-      puts OUTSIDE_GRID
-      return false
+      OUTSIDE_GRID
     else
       submission
     end
   end
 
   def placement_compliance(length, coordinates, board, level=:beginner)
-    until new_submission_valid(length, coordinates, board)
+    result = new_submission_valid(length, coordinates, board)
+    until result.is_a?(Array)
+      puts result
       coordinates = verify_submission(get_input, 2, level)
+      result = new_submission_valid(length, coordinates, board)
     end
     coordinates
   end
   
   def new_submission_valid(length, coordinates, board)
     if length == 3 && check_fleet(length, coordinates, board)
-      puts SHIPS_OVERLAP
-      return false
+      SHIPS_OVERLAP
     elsif check_compliance(length, coordinates) == :valid
       coordinates
     else
-      puts check_compliance(length, coordinates)
-      puts RE_ENTER
-      return false
+      check_compliance(length, coordinates)
     end
   end
 
@@ -67,17 +68,17 @@ module ComplianceMod
   end
 
   def check_fleet(length, coordinates, board)
-    # binding.pry
     check = board.interpolate_coordinates(length, coordinates)
-
-    check.any? do |check|
-      board.fleet.values.flatten.include?(check)
+    if !check
+      false
+    else
+      check.any? do |check|
+        board.fleet.values.flatten.include?(check)
+      end
     end
-
   end
 
   def ship_too_long(length, coordinates)
-    # binding.pry
     (coordinates[3].ord - coordinates[1].ord) >= length || 
     (coordinates[2].ord - coordinates[0].ord) >= length
   end
@@ -103,7 +104,7 @@ module ComplianceMod
   end
 
 
-  def outside_grid(coordinates, level)
+  def outside_grid(coordinates, level=:beginner)
     coordinates.all? do |coordinate|
       GRID_SIZE[level][0].include?(coordinate.split('')[0]) &&
       GRID_SIZE[level][1].include?(coordinate.split('')[1])
