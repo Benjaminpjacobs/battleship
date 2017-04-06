@@ -1,11 +1,10 @@
-require 'pry'
 require './lib/board'
 require "./lib/compliance_module"
 require "Forwardable"
 
 class Computer
-  include ComplianceMod
   extend Forwardable
+  include ComplianceMod
   attr_accessor :board, :moves
 
   def_delegator :@board, :display_board

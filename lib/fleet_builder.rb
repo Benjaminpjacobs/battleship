@@ -1,10 +1,10 @@
 require './lib/compliance_module'
 require './lib/messages'
-require './lib/repl'
 
 class FleetBuilder
-  attr_accessor :level, :user, :interface
   include ComplianceMod
+
+  attr_accessor :level, :user, :interface
 
   FLEET_LEVEL = { beginner: 3, intermediate: 4, advanced: 5}
 

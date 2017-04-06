@@ -1,6 +1,6 @@
 require './lib/messages'
 require './lib/repl'
-require 'pry'
+
 module ComplianceMod
   include Messages
 
@@ -40,7 +40,7 @@ module ComplianceMod
   end
  
   def new_submission_valid(length, coordinates, board)
-    if length == 3 && check_fleet(length, coordinates, board)
+    if length >= 3 && check_fleet(length, coordinates, board)
       SHIPS_OVERLAP
     elsif check_compliance(length, coordinates) == :valid
       coordinates
@@ -50,14 +50,16 @@ module ComplianceMod
   end
 
   def check_compliance(length, coordinates)
-    coordinates.pop if coordinates.length == 3
+    if coordinates.length >= 3
+      coordinates.pop until coordinates.length == 2
+    end
+    
     coordinates = coordinates.join.split('')
     combine_double_digits(coordinates) if coordinates.length > 4
     display_applicable_error_message(length, coordinates)
   end
 
   def display_applicable_error_message(length, coordinates)
-    
     if ship_too_long(length, coordinates) 
       SHIP_TOO_LONG_OR_SHORT
     elsif ship_wraps_board(coordinates)

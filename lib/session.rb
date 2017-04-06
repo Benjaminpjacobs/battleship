@@ -1,42 +1,41 @@
-require "./lib/player"
-require "./lib/computer"
-require "./lib/compliance_module"
-require "./lib/shot_sequence"
-require "./lib/messages"
-require "./lib/repl"
-require "./lib/end_game"
-require "./lib/fleet_builder"
-require 'pry'
+require './lib/player'
+require './lib/computer'
+require './lib/compliance_module'
+require './lib/shot_sequence'
+require './lib/messages'
+require './lib/repl'
+require './lib/end_game'
+require './lib/fleet_builder'
 
 class Session
   include ComplianceMod, Messages
   attr_accessor :start_time, :player, :computer, :interface, :level
 
-  def initialize(level=:beginner, interface)
+  def initialize(level=:beginner)
     @start_time = Time.now
-    @interface = interface
+    @interface = Repl.new
     @player = Player.new(level, @interface)
     @computer = Computer.new(level, @interface)
     @level = level
   end
   
   def game_flow
-    @computer.make_fleet
+    computer.make_fleet
     get_player_fleet
-    game_loop(@player, @computer)
-    end_game(@player, @computer, @start_time)
+    game_loop(player, computer)
+    end_game(player, computer, start_time)
   end
 
   def get_player_fleet
     interface.display(GET_PLAYER_FLEET)
-    FleetBuilder.new(@level, @player, @interface).build
+    FleetBuilder.new(level, player, interface).build
   end
 
   def game_loop(offense, defense)
     turn = 1
     loop do 
       interface.display(which_player(turn))
-      result = ShotSequence.new(offense, defense, @level, @interface).new_turn
+      result = ShotSequence.new(offense, defense, level, interface).new_turn
       interface.display(result)
       break if winner?
       offense, defense = defense, offense
@@ -52,6 +51,6 @@ class Session
   end
 
   def winner?
-    @computer.fleet.values.flatten.empty? || @player.fleet.values.flatten.empty?
+    computer.fleet.values.flatten.empty? || player.fleet.values.flatten.empty?
   end  
 end

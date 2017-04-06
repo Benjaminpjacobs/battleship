@@ -1,8 +1,8 @@
-require "./lib/board.rb"
-require "./lib/compliance_module"
-require "./lib/messages.rb"
-require "./lib/repl.rb"
-require 'Forwardable'
+require './lib/board.rb'
+require './lib/compliance_module'
+require './lib/messages.rb'
+require './lib/repl.rb'
+require 'forwardable'
 
 class Player
   extend Forwardable

@@ -1,7 +1,6 @@
 require "./lib/session.rb"
 require "./lib/messages.rb"
 require "./lib/repl.rb"
-require 'pry'
 
 class Battleship
   include Messages
@@ -33,7 +32,7 @@ class Battleship
   def play_battleship
     level = choose_level
     interface.say(PLAY)
-    s = Session.new(level, interface)
+    s = Session.new(level)
     s.game_flow
   end
 

@@ -1,7 +1,6 @@
-require "./lib/compliance_module"
+require './lib/compliance_module'
 require './lib/messages'
 require './lib/repl'
-require 'pry'
 
 class ShotSequence
   include ComplianceMod, Messages
@@ -20,9 +19,9 @@ class ShotSequence
 
   def evaluate_target(coordinate)
     status = defensive_player.evaluate_move(coordinate)
-    if status == "  H  "
+    if status == '  H  '
       sunk?(coordinate)
-    elsif status == "  M  "
+    elsif status == '  M  '
       miss_message(coordinate)
     else
       return false

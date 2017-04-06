@@ -55,6 +55,13 @@ class Board
     @board[coordinate[0]][coordinate[1]] == "  M  " || @board[coordinate[0]][coordinate[1]] == "  H  "
   end
 
+  def display_ship_on_board(coordinates)
+    coordinates.each do |coordinate|
+      location = parse_location(coordinate)
+      @board[location[0]][location[1]] = "  ∆  "
+    end
+  end
+
   def interpolate_coordinates(ship, coordinates)
     if same_first_coordinate(coordinates)
       interpolated = generate_interpolated_right(ship, coordinates)
@@ -67,30 +74,17 @@ class Board
     coordinates.flatten!
   end
   
-  def display_ship_on_board(coordinates)
-    coordinates.each do |coordinate|
-      location = parse_location(coordinate)
-      @board[location[0]][location[1]] = "  ∆  "
-    end
-  end
-
-# private
-
   def parse_location(location)
     coordinate = []
     location = Array.new.push(location[0], location[1..-1])
     turn_string_into_digits(location)
   end
 
+  private
+
   def turn_string_into_digits(location)
-    y_axis = {'A' => 2,'B' => 3,
-              'C' => 4,'D' => 5,
-              'E' => 6,'F' => 7,
-              'G' => 8,'H' => 9,
-              'I' => 10, 'J' =>  11,
-              'K' => 12, 'L' => 13}
     location[1] = location[1].to_i
-    location[0] = y_axis[location[0]]
+    location[0] = Y_AXIS[location[0]]
     location
   end
 
@@ -99,7 +93,7 @@ class Board
     collection = (coordinates[0][1..-1].."12").cycle
     collection.next
     (ship-2).times do |i|
-      sub_array << coordinates[0].split('')[0] + collection.next#cycle[i+1]
+      sub_array << coordinates[0].split('')[0] + collection.next
     end
     sub_array
   end
@@ -109,7 +103,7 @@ class Board
     collection = (coordinates[0].split('')[0].."L").cycle
     collection.next
     (ship-2).times do |i|
-      sub_array <<  collection.next + coordinates[1][1..-1]  #cycle[i+1]
+      sub_array <<  collection.next + coordinates[1][1..-1]
     end
     sub_array
   end

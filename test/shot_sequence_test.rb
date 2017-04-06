@@ -68,9 +68,7 @@ class ShotSequenceTest < Minitest::Test
 
   def test_computer_shot
     ss = ShotSequence.new(@computer, @player, :beginner, @interface)
-    actual = ss.evaluate_target(@computer.guess)[0..7]
-    expected = "Miss at "
-    assert_equal expected, actual
+    assert ss.evaluate_target(@computer.guess)
   end
 
   def test_new_turn
@@ -83,4 +81,11 @@ class ShotSequenceTest < Minitest::Test
   def test_new_turn_computer
     assert = @ss.new_turn.is_a?(String)
   end
+
+  def test_reinitiate_shot
+    ss = ShotSequence.new(@computer, @player, :beginner, @interface)
+    assert ss.reinitiate_shot
+  end
+
+
 end

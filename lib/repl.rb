@@ -1,7 +1,8 @@
-require "./lib/compliance_module"
+require './lib/messages'
 
 class Repl
-  include ComplianceMod
+  include Messages
+
   def display(message)
     puts message
   end

@@ -1,4 +1,5 @@
 module Messages
+  
   WELCOME = 
   "=================== Welcome to BATTLESHIP ===================
 Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
@@ -8,7 +9,6 @@ Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
 
   PLAY = 
 "Let's play battle ship"
-
 
   INSTRUCTIONS = 
 "The object of Battleship is to try and sink all of 
@@ -59,10 +59,6 @@ Player Turn:"
 "=========== 
 Computer Turn:"
 
-def which_player(turn)
-  turn.odd? ? PLAYER_TURN : COMPUTER_TURN
-end
-
   RETURN_MESSAGE = 
 "--press return to continue--"
 
@@ -83,7 +79,6 @@ please choose new coordinates:"
 
   OUTSIDE_GRID = 
 "Please enter two coordinates that are within the selected grid size:"
-
 
   SHIPS_OVERLAP = 
 "Ships cannot overlap
@@ -107,5 +102,9 @@ please choose new coordinates:"
 
   def miss(coordinate)
     "Miss at #{coordinate}!"
+  end
+  
+  def which_player(turn)
+    turn.odd? ? PLAYER_TURN : COMPUTER_TURN
   end
 end

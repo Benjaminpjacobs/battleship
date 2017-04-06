@@ -11,7 +11,7 @@ class SessionTest < Minitest::Test
 
 
   def setup
-    @s = Session.new(:beginner, Repl.new)
+    @s = Session.new(:beginner)
   end
 
   def test_it_exists
@@ -76,6 +76,20 @@ class SessionTest < Minitest::Test
     player = Player.new(:beginner, Repl.new)
     @s.end_game(player, computer, Time.now)
   end
+
+  def test_winner?
+    assert @s.winner?
+  end
+
+  # def test_game_loop
+  #   computer = Computer.new(:beginner, Repl.new)
+  #   player = Player.new(:beginner, Repl.new)
+  #   player.fleet[1 => ["A1"]]
+  #   computer.fleet[1 => ["A1"]]
+  #   actual = @s.game_loop(player, computer)
+  #   expected = 
+  #   assert_equal expected, actual
+  # end
 
   # def test_session_game_flow
   #   s = Session.new

@@ -6,9 +6,8 @@ require './lib/repl'
 class FleetBuilderTest < Minitest::Test
   
   def setup
-    @interface = Repl.new
-    @user = Player.new(:beginner, @interface)
-    @fb = FleetBuilder.new(:beginner, @user, @interface)
+    @user = Player.new(:beginner, Repl.new)
+    @fb = FleetBuilder.new(:beginner, @user, Repl.new)
   end
 
   def test_it_exists

@@ -32,12 +32,6 @@ class BattleshipTest < Minitest::Test
     assert_equal expected, actual
   end
 
-  def test_battleship
-    b = Battleship.new
-    actual = b.play_battleship
-    assert_instance_of Session, actual
-  end
-
   def test_menu
     b = Battleship.new
     puts " "
