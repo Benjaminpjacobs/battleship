@@ -1,17 +1,19 @@
 require "./lib/boardmaker_module"
+require "./lib/repl"
 
 class Board
   include BoardMaker
-  attr_accessor :board, :fleet
+  attr_accessor :board, :fleet, :interface
 
-  def initialize
+  def initialize(interface)
     @board = [] 
     @fleet = {}
+    @interface = interface
   end
 
   def display_board
     @board.each do |line|
-      puts line.join
+      interface.display(line.join)
     end
   end
   
@@ -31,13 +33,12 @@ class Board
 
   def add_ship(ship, coordinates, user=nil)
     if ship > 2
-      @fleet[ship] = interpolate_coordinates(coordinates)
+      @fleet[ship] = interpolate_coordinates(ship,coordinates)
     else
       @fleet[ship] = coordinates
     end
     display_ship_on_board(@fleet[ship]) if user.nil?
   end
-  
   
   def evaluate_move(coordinates)
     if already_played(coordinates)
@@ -54,15 +55,6 @@ class Board
     @board[coordinate[0]][coordinate[1]] == "  M  " || @board[coordinate[0]][coordinate[1]] == "  H  "
   end
 
-  def interpolate_coordinates(coordinates)
-    if same_first_coordinate(coordinates)
-      interpolated = generate_interpolated_right(coordinates)
-    else
-      interpolated = generate_interpolated_left(coordinates)
-    end
-    coordinates << interpolated
-  end
-  
   def display_ship_on_board(coordinates)
     coordinates.each do |coordinate|
       location = parse_location(coordinate)
@@ -70,36 +62,57 @@ class Board
     end
   end
 
-private
-
-
+  def interpolate_coordinates(ship, coordinates)
+    if same_first_coordinate(coordinates)
+      interpolated = generate_interpolated_right(ship, coordinates)
+    elsif same_second_coordinate(coordinates)
+      interpolated = generate_interpolated_left(ship, coordinates)
+    else
+      return false
+    end
+    coordinates << interpolated
+    coordinates.flatten!
+  end
+  
   def parse_location(location)
-    location = location.split('')
+    coordinate = []
+    location = Array.new.push(location[0], location[1..-1])
     turn_string_into_digits(location)
   end
 
+  private
+
   def turn_string_into_digits(location)
-    y_axis = {'A' => 2,'B' => 3,
-              'C' => 4,'D' => 5}
     location[1] = location[1].to_i
-    location[0] = y_axis[location[0]]
+    location[0] = Y_AXIS[location[0]]
     location
   end
 
-  
-  def generate_interpolated_right(coordinates)
-    coordinates[0].split('')[0] + coordinates[0].split('')[1].next
+  def generate_interpolated_right(ship, coordinates)
+    sub_array = []
+    collection = (coordinates[0][1..-1].."12").cycle
+    collection.next
+    (ship-2).times do |i|
+      sub_array << coordinates[0].split('')[0] + collection.next
+    end
+    sub_array
   end
 
-  def generate_interpolated_left(coordinates)
-    coordinates[0].split('')[0].next + coordinates[1].split('')[1]
+  def generate_interpolated_left(ship, coordinates)
+    sub_array = []
+    collection = (coordinates[0].split('')[0].."L").cycle
+    collection.next
+    (ship-2).times do |i|
+      sub_array <<  collection.next + coordinates[1][1..-1]
+    end
+    sub_array
   end
 
   def same_first_coordinate(coordinates)
     coordinates[0].split('')[0] == coordinates[1].split('')[0]
   end
+  
+  def same_second_coordinate(coordinates)
+    coordinates[0][1..-1] == coordinates[1][1..-1]
+  end
 end
-
-
-
-############

@@ -1,64 +1,62 @@
-require './lib/setup_module'
+require './lib/compliance_module'
 require './lib/messages'
-require 'pry'
+require './lib/repl'
 
 class ShotSequence
-  include Setup, Messages
-  attr_accessor :offensive_player, :defensive_player
+  include ComplianceMod, Messages
+  attr_accessor :offensive_player, :defensive_player, :interface, :level
 
-  def initialize(offensive_player, defensive_player)
+  def initialize(offensive_player, defensive_player, level, interface)
     @offensive_player, @defensive_player = offensive_player, defensive_player 
+    @level = level
+    @interface = interface
   end
 
   def new_turn
-    if offensive_player.is_a?(Computer)
-      evaluate_target(offensive_player.guess)
-    else
-      evaluate_target(shot_prompt)
-    end
-  end
-
-  def shot_prompt
-    defensive_player.show_board
-    puts TARGET_PROMPT
-    verify_submission(offensive_player.guess, 1).join
+    defensive_player.display_board if offensive_player.is_a?(Player)
+    shot_loop(offensive_player)
   end
 
   def evaluate_target(coordinate)
-    status = defensive_player.board.evaluate_move(coordinate)
-    if status == "  H  "
+    status = defensive_player.evaluate_move(coordinate)
+    if status == '  H  '
       sunk?(coordinate)
-    elsif status == "  M  "
+    elsif status == '  M  '
       miss_message(coordinate)
     else
-      reinitiate_shot
+      return false
     end
   end
 
   def reinitiate_shot
-    if offensive_player.is_a?(Computer)
-      evaluate_target(offensive_player.guess)
-    elsif offensive_player.is_a?(Player)
-      puts PICK_ANOTHER
-      evaluate_target(shot_prompt)
+    interface.display(PICK_ANOTHER) if offensive_player.is_a?(Player)
+    shot_loop(offensive_player)
+  end
+
+  def shot_loop(offensive_player)
+    message = evaluate_target(offensive_player.guess)
+    if message == false
+      reinitiate_shot
+    else
+     message
     end
   end
 
   def hit_message(coordinate)
     update_defensive_fleet(coordinate)
-    defensive_player.show_board
-    puts direct_hit(coordinate)
+    defensive_player.display_board
+    direct_hit(coordinate)
   end
 
   def miss_message(coordinate)
-    defensive_player.show_board
-    puts miss(coordinate)
+    defensive_player.display_board
+    miss(coordinate)
   end
 
   def sunk?(coordinate)
     if ship = defensive_player.fleet.key([coordinate])
       update_defensive_fleet(coordinate)
-      defensive_player.show_board
+      defensive_player.display_board
       sunk_message(ship, defensive_player)
     else
       hit_message(coordinate)
@@ -67,11 +65,9 @@ class ShotSequence
 
   def sunk_message(ship, defensive_player)
     if defensive_player.is_a?(Computer)
-      puts "You sunk my #{ship}-unit ship!"
-      `say -v Ralph "You sunk my #{ship}-unit ship!"`
-    else
-      puts "I sunk your #{ship}-unit ship!"
-      `say -v Ralph "I sunk your #{ship}-unit ship!"`
+      "You sunk my #{ship}-unit ship!"
+    elsif defensive_player.is_a?(Player)
+      "I sunk your #{ship}-unit ship!"
     end
   end
 

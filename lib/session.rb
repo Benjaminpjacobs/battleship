@@ -1,97 +1,56 @@
-require "./lib/player"
-require "./lib/computer"
-require "./lib/setup_module"
-require "./lib/shot_sequence"
-require "./lib/messages"
-require 'pry'
+require './lib/player'
+require './lib/computer'
+require './lib/compliance_module'
+require './lib/shot_sequence'
+require './lib/messages'
+require './lib/repl'
+require './lib/end_game'
+require './lib/fleet_builder'
 
 class Session
-  include Setup, Messages
-  attr_reader :start_time, :player, :computer
+  include ComplianceMod, Messages
+  attr_accessor :start_time, :player, :computer, :interface, :level
 
-  def initialize
+  def initialize(level=:beginner)
     @start_time = Time.now
-    @player = Player.new
-    @computer = Computer.new
+    @interface = Repl.new
+    @player = Player.new(level, @interface)
+    @computer = Computer.new(level, @interface)
+    @level = level
   end
   
   def game_flow
-    @computer.make_fleet
+    computer.make_fleet
     get_player_fleet
-    game_loop
-    game_end_sequence
-  end
-
-  def game_loop
-    loop do 
-      puts PLAYER_TURN
-      ShotSequence.new(@player, @computer).new_turn
-      break if winner?
-      sleep until return_to_continue
-      puts COMPUTER_TURN
-      ShotSequence.new(@computer, @player).new_turn
-      break if winner?
-      sleep until return_to_continue
-    end
-  end
-
-  def game_end_sequence
-    game_time = calculate_game_time
-    turns = @player.moves.uniq.length
-    winner =  determine_winner
-    `say -v Ralph "GAME OVER, #{winner} wins."`
-    end_message(turns, winner, game_time)
-    puts NEW_GAME
+    game_loop(player, computer)
+    end_game(player, computer, start_time)
   end
 
   def get_player_fleet
-    puts GET_PLAYER_FLEET
-    unit_submission(2, TWO_UNIT_SHIP)
-    unit_submission(3, THREE_UNIT_SHIP)
+    interface.display(GET_PLAYER_FLEET)
+    FleetBuilder.new(level, player, interface).build
   end
 
-private
-
-  def return_to_continue
-    puts RETURN_MESSAGE
-    if gets.chomp == ''
-      return true 
-    else
-      return_to_continue
+  def game_loop(offense, defense)
+    turn = 1
+    loop do 
+      interface.display(which_player(turn))
+      result = ShotSequence.new(offense, defense, level, interface).new_turn
+      interface.display(result)
+      break if winner?
+      offense, defense = defense, offense
+      turn += 1
+      sleep until interface.return_to_continue
     end
   end
 
-  def determine_winner
-    if @player.moves.uniq.length > @computer.moves.uniq.length
-      "Player"
-    else
-      "Computer"
-    end
-  end
-
-  def calculate_game_time
-    if delta > 60
-      x = (delta/60).to_i ; y = (delta%60).to_i
-    else
-      x = 0 ; y = delta.to_i
-    end
-    "#{x} minutes, #{y} seconds"
-  end
-
-  def delta
-    Time.now - @start_time
+  def end_game(player, computer, start_time)
+     finish = EndGame.new(player, computer, start_time)
+     stats = finish.run
+     interface.end_message(stats[0], stats[1], stats[2])
   end
 
   def winner?
-    @computer.fleet.values.flatten.empty? || @player.fleet.values.flatten.empty?
-  end
-  
-
-  def unit_submission(size, message)
-    puts message
-    submission = verify_submission(get_input, 2)
-    coordinates = placement_compliance(size, submission, @player.board)
-    @player.board.add_ship(size, coordinates)
-  end
-
+    computer.fleet.values.flatten.empty? || player.fleet.values.flatten.empty?
+  end  
 end
