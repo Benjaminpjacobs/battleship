@@ -15,6 +15,7 @@ class FleetBuilder
   end
 
   def build
+    
     user.display_board
     for i in (2..FLEET_LEVEL[level])
       interface.display(UNIT_SHIP[i])

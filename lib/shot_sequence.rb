@@ -17,6 +17,15 @@ class ShotSequence
     shot_loop(offensive_player)
   end
 
+  def shot_loop(offensive_player)
+    result = evaluate_target(offensive_player.guess)
+    if result == false
+      reinitiate_shot
+    else
+     result
+    end
+  end
+
   def evaluate_target(coordinate)
     status = defensive_player.evaluate_move(coordinate)
     if status == '  H  '
@@ -33,26 +42,12 @@ class ShotSequence
     shot_loop(offensive_player)
   end
 
-  def shot_loop(offensive_player)
-    result = evaluate_target(offensive_player.guess)
-    if result == false
-      reinitiate_shot
-    else
-     result
-    end
-  end
-
   def hit_message(coordinate)
     update_defensive_fleet(coordinate)
     defensive_player.display_board
     direct_hit(coordinate)
   end
-
-  def miss_message(coordinate)
-    defensive_player.display_board
-    miss(coordinate)
-  end
-
+  
   def sunk?(coordinate)
     if ship = defensive_player.fleet.key([coordinate])
       update_defensive_fleet(coordinate)
@@ -67,5 +62,11 @@ class ShotSequence
     ship = defensive_player.fleet.find{ |k,v| v.include?(coordinate)}
     defensive_player.fleet[ship[0]].delete(coordinate)
   end
+
+  def miss_message(coordinate)
+    defensive_player.display_board
+    miss(coordinate)
+  end
+
 
 end

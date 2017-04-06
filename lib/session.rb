@@ -20,6 +20,7 @@ class Session
   end
   
   def game_flow
+    system 'clear'
     computer.make_fleet
     get_player_fleet
     game_loop(player, computer)
@@ -34,6 +35,7 @@ class Session
   def game_loop(offense, defense)
     turn = 1
     loop do 
+      system 'clear'
       interface.display(which_player(turn))
       result = ShotSequence.new(offense, defense, level, interface).new_turn
       interface.display(result)
