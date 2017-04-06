@@ -2,11 +2,11 @@ require './lib/board.rb'
 require './lib/compliance_module'
 require './lib/messages.rb'
 require './lib/repl.rb'
-require 'forwardable'
+require 'forwardable' unless defined? Forwardable
 
 class Player
-  extend Forwardable
   include ComplianceMod, Messages
+  extend Forwardable
   attr_accessor :board, :moves, :interface
   
   def_delegators :@board, :display_board, :fleet, :add_ship, :evaluate_move

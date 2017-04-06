@@ -6,7 +6,7 @@ Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
 
   QUITTER = 
 "You'll never sink my battleship with THAT attitude!"
-`say -v Ralph "You'll never sink my battleship with THAT attitude!"'
+# `say -v Ralph "You'll never sink my battleship with THAT attitude!"'
 
   PLAY = 
 "Let's play battle ship"
@@ -99,11 +99,11 @@ please choose new coordinates:"
   def sunk_message(ship, defensive_player)
     if defensive_player.is_a?(Computer)
       "You sunk my #{ship}-unit ship!"
-      `say -v Ralph "You sunk my #{ship}-unit ship!"`
+      # `say -v Ralph "You sunk my #{ship}-unit ship!"`
 
     elsif defensive_player.is_a?(Player)
       "I sunk your #{ship}-unit ship!"
-      `say -v Ralph "I sunk your #{ship}-unit ship!"`
+      # `say -v Ralph "I sunk your #{ship}-unit ship!"`
     end
   end
 

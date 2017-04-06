@@ -98,5 +98,11 @@ class SessionTest < Minitest::Test
     assert_nil @s.game_loop(player, computer)
   end
 
+  def test_return_to_continue
+    repl = Repl.new
+    assert repl.return_to_continue
+    
+  end
+
 
 end

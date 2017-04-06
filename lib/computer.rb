@@ -1,10 +1,10 @@
 require './lib/board'
 require "./lib/compliance_module"
-require "Forwardable"
+require 'forwardable' unless defined? Forwardable
 
 class Computer
-  extend Forwardable
   include ComplianceMod
+  extend Forwardable
   attr_accessor :board, :moves
 
   def_delegators :@board, :display_board, :fleet, :evaluate_move
