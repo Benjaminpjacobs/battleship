@@ -25,7 +25,7 @@ class Repl
   end
 
   def end_message(game_time, turns, winner)
-      puts `say -v Ralph "GAME OVER, #{winner} wins."`
+      say ("GAME OVER, #{winner} wins.")
       puts "=============================="
       puts "         GAME OVER            "
       puts "        Game Stats:           "

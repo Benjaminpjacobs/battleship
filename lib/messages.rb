@@ -94,7 +94,14 @@ please choose new coordinates:"
 
   LEVEL = 
 "Please choose a level: (b)eginner, (i)ntermediate, or (a)dvanced"
-  
+
+  def sunk_message(ship, defensive_player)
+    if defensive_player.is_a?(Computer)
+      "You sunk my #{ship}-unit ship!"
+    elsif defensive_player.is_a?(Player)
+      "I sunk your #{ship}-unit ship!"
+    end
+  end
 
   def direct_hit(coordinate)
     "Direct hit at #{coordinate}!"

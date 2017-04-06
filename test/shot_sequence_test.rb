@@ -72,7 +72,9 @@ class ShotSequenceTest < Minitest::Test
   end
 
   def test_new_turn
+    puts ''
     puts "choose A2"
+    puts ''
     actual = @ss.new_turn
     expected = "Miss at A2!"
     assert_equal expected,  actual
@@ -85,6 +87,12 @@ class ShotSequenceTest < Minitest::Test
   def test_reinitiate_shot
     ss = ShotSequence.new(@computer, @player, :beginner, @interface)
     assert ss.reinitiate_shot
+  end
+
+  def test_sunk_message
+    ss = ShotSequence.new(@player, @computer, :beginner, @interface)
+    actual = ss.sunk_message(2, @Player)
+    assert_nil actual
   end
 
 

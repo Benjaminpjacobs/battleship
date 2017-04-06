@@ -41,7 +41,8 @@ class Battleship
     level = interface.get.downcase
     levels = {'b' => :beginner,
               'i' => :intermediate,
-              'a'=> :advanced}
+              'a'=> :advanced
+             }
     levels[level]
   end
 

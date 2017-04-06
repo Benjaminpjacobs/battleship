@@ -9,10 +9,7 @@ class Player
   include ComplianceMod, Messages
   attr_accessor :board, :moves, :interface
   
-  def_delegator :@board, :display_board
-  def_delegator :@board, :fleet
-  def_delegator :@board, :add_ship
-  def_delegator :@board, :evaluate_move
+  def_delegators :@board, :display_board, :fleet, :add_ship, :evaluate_move
 
   def initialize(level=:beginner, interface)
     @interface = interface

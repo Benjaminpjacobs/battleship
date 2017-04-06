@@ -1,5 +1,5 @@
 require './test/test_helper'
-require './lib/battleship.rb'
+require './lib/battleship'
 require './lib/messages'
 
 class BattleshipTest < Minitest::Test

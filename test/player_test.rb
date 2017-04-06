@@ -31,6 +31,9 @@ class PlayerTest < Minitest::Test
   end
 
   def test_player_can_make_move
+    puts ''
+    puts 'Put A1'
+    puts ''
     @p.guess
     actual = @p.moves
     expected = ["A1"]

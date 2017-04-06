@@ -1,7 +1,7 @@
 require './test/test_helper'
 require './lib/player'
 require './lib/computer'
-require './lib/session.rb'
+require './lib/session'
 require './lib/messages'
 require './lib/repl'
 require './lib/end_game'
@@ -29,6 +29,9 @@ class SessionTest < Minitest::Test
   end
 
   def test_it_can_add_ships
+    puts ''
+    puts 'PUT A1 A2 then B1 B3'
+    puts ''
     @s.get_player_fleet
     actual = @s.player.board.fleet
     expected = {2=>["A1", "A2"], 3=>["B1", "B3", "B2"]}
@@ -60,12 +63,18 @@ class SessionTest < Minitest::Test
   end
   
   def test_verify_submission
+    puts ''
+    puts 'PUT A1 A2'
+    puts ''
     actual = @s.verify_submission(["A1", "A5"], 2)
     expected = ["A1", "A2"]
     assert_equal expected, actual
   end
 
   def test_placement_compliance
+    puts ''
+    puts 'PUT A1 A2'
+    puts ''
     actual = @s.placement_compliance(2, ["A1", "B2"], @s.player.board)
     expected = ["A1", "A2"]
     assert_equal expected, actual
@@ -81,19 +90,13 @@ class SessionTest < Minitest::Test
     assert @s.winner?
   end
 
-  # def test_game_loop
-  #   computer = Computer.new(:beginner, Repl.new)
-  #   player = Player.new(:beginner, Repl.new)
-  #   player.fleet[1 => ["A1"]]
-  #   computer.fleet[1 => ["A1"]]
-  #   actual = @s.game_loop(player, computer)
-  #   expected = 
-  #   assert_equal expected, actual
-  # end
+  def test_game_loop
+    computer = Computer.new(:beginner, Repl.new)
+    player = Player.new(:beginner, Repl.new)
+    player.fleet[1] = ["A1"]
+    computer.fleet[1] = ["A1"]
+    assert_nil @s.game_loop(player, computer)
+  end
 
-  # def test_session_game_flow
-  #   s = Session.new
-  #   s.game_flow
-  # end
 
 end

@@ -34,11 +34,11 @@ class ShotSequence
   end
 
   def shot_loop(offensive_player)
-    message = evaluate_target(offensive_player.guess)
-    if message == false
+    result = evaluate_target(offensive_player.guess)
+    if result == false
       reinitiate_shot
     else
-     message
+     result
     end
   end
 
@@ -60,14 +60,6 @@ class ShotSequence
       sunk_message(ship, defensive_player)
     else
       hit_message(coordinate)
-    end
-  end
-
-  def sunk_message(ship, defensive_player)
-    if defensive_player.is_a?(Computer)
-      "You sunk my #{ship}-unit ship!"
-    elsif defensive_player.is_a?(Player)
-      "I sunk your #{ship}-unit ship!"
     end
   end
 

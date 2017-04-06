@@ -22,6 +22,9 @@ class FleetBuilderTest < Minitest::Test
   end
 
   def test_build
+    puts ''
+    puts "Put A1 A2, Then B1 B3"
+    puts ''
     @fb.build
     expected = {2=>["A1", "A2"], 3=> ["B1", "B3", "B2"]}
     actual = @user.fleet

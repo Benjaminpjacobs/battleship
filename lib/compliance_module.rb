@@ -53,7 +53,6 @@ module ComplianceMod
     if coordinates.length >= 3
       coordinates.pop until coordinates.length == 2
     end
-    
     coordinates = coordinates.join.split('')
     combine_double_digits(coordinates) if coordinates.length > 4
     display_applicable_error_message(length, coordinates)

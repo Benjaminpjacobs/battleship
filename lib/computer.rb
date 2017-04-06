@@ -7,9 +7,7 @@ class Computer
   include ComplianceMod
   attr_accessor :board, :moves
 
-  def_delegator :@board, :display_board
-  def_delegator :@board, :fleet
-  def_delegator :@board, :evaluate_move
+  def_delegators :@board, :display_board, :fleet, :evaluate_move
   
   LEVEL_SETTING = {beginner:[2,'D',4] , intermediate:[3,'H',8], advanced:[4,'L',12]}
 
@@ -69,38 +67,8 @@ class Computer
   def valid?(length, coordinates)
     !(ship_too_long(length, coordinates) || 
     ship_wraps_board(coordinates) || 
-    ship_diagonal(coordinates)|| 
+    ship_diagonal(coordinates) || 
     same_coordinates(coordinates) || 
     ship_too_short(length, coordinates)) 
-  end
-
-  def combine_double_digits(coordinates)
-    if coordinates.length == 5 && ("A"..LEVEL_SETTING[@level][1]).to_a.include?(coordinates[2])
-      combine_fourth_and_fifth(coordinates)
-    elsif coordinates.length == 5 
-      combine_second_and_third(coordinates)
-    else
-      combine_double_doubles(coordinates)
-    end    
-    coordinates
-  end
-
-private
-
-  def combine_fourth_and_fifth(coordinates)
-    coordinates[3] = coordinates[3] + coordinates[4]
-    coordinates.delete_at(4)
-  end
-
-  def combine_second_and_third(coordinates)
-    coordinates[1] = coordinates[1] + coordinates[2]
-    coordinates.delete_at(2)
-  end
-
-  def combine_double_doubles(coordinates)
-    coordinates[1] = coordinates[1] + coordinates[2]
-    coordinates[4] = coordinates[4] + coordinates[5]
-    coordinates.delete_at(2)
-    coordinates.delete_at(4)
   end
 end
