@@ -15,12 +15,12 @@ class FleetBuilder
   end
 
   def build
-    
     user.display_board
     for i in (2..FLEET_LEVEL[level])
       interface.display(UNIT_SHIP[i])
       submission = interface.get.upcase.split(' ')
       unit_submission(i, submission)
+      system 'clear'
       user.display_board
     end
   end

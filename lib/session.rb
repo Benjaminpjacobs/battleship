@@ -24,6 +24,7 @@ class Session
     computer.make_fleet
     get_player_fleet
     game_loop(player, computer)
+    system 'clear'
     end_game(player, computer, start_time)
   end
 

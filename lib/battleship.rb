@@ -11,9 +11,11 @@ class Battleship
   end
 
   def menu
+    system 'clear'
     interface.display(welcome)
     input = interface.get
     loop_till_valid(input)
+    system 'clear'
     interface.display(quit_message)
   end
 
@@ -22,6 +24,7 @@ class Battleship
   end
  
   def instructions
+    system 'clear'
     INSTRUCTIONS
   end
 
@@ -30,9 +33,11 @@ class Battleship
   end
 
   def play_battleship
+    system 'clear'
     level = choose_level
     interface.say(PLAY)
     s = Session.new(level)
+    system 'clear'
     s.game_flow
   end
 
