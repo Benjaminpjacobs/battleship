@@ -6,5 +6,6 @@ To play first [install ruby](https://www.ruby-lang.org/en/documentation/installa
 
 Then clone down the branch.
 
-`cd Battleship
-ruby 
+``` ruby
+cd Battleship
+ruby ```
