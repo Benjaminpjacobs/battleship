@@ -10,4 +10,4 @@ Then clone down the branch. Enter the following:
 cd battleship
 ruby lib/battleship.rb
 ```
-and you're ready to sink some ship!
+and you're ready to sink some ships!
