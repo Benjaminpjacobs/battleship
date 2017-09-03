@@ -8,6 +8,7 @@ Then clone down the branch. Enter the following:
 
 ``` ruby
 cd battleship
+bundle install
 ruby lib/battleship.rb
 ```
 and you're ready to sink some ships!
