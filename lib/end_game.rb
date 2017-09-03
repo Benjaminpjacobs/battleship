@@ -1,4 +1,3 @@
-require 'pry'
 require './lib/messages'
 require './lib/repl'
 
